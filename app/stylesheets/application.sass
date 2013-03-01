@@ -1,0 +1,22 @@
+html,
+body
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
+
+@mixin full-height
+  position: absolute
+  top: 0
+  bottom: 0
+
+.content
+  @include full-height
+  left: 0
+  right: 300px
+  border-right: 1px solid black
+
+.comments
+  @include full-height
+  right: 0
+  width: 300px
