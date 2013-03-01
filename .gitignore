@@ -1,7 +1,6 @@
 .env
-log/**/*
-tmp/**/*
-bin/*
-vendor/gems/*
-!vendor/gems/cache/
-.sass-cache/*
+
+.sass-cache/
+public/javascripts/codemirror/mode/**/
+log/
+tmp/

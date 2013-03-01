@@ -10,11 +10,29 @@ body
   top: 0
   bottom: 0
 
+@mixin full-stretch
+  @include full-height
+  left: 0
+  right: 0
+
+@mixin codeFont
+  font-family: Consolas, Inconsolata, monospace !important
+
 .content
   @include full-height
   left: 0
   right: 300px
   border-right: 1px solid black
+  font-size: 150%
+
+  .CodeMirror
+    @include full-stretch
+    @include codeFont
+    height: 100%
+
+  .CodeMirror-scoll
+    @include full-stretch
+    overflow: scroll
 
 .comments
   @include full-height

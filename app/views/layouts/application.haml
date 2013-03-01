@@ -1,7 +1,16 @@
 !!!5
 %head
   %title LiveDraft
+  = stylesheet_link_tag "/stylesheets/codemirror"
   = stylesheet_link_tag "application"
+  = javascript_include_tag "/javascripts/jquery-1.9.1"
+  = javascript_include_tag "/javascripts/codemirror/codemirror-3.1"
+  = javascript_include_tag "/javascripts/codemirror/overlay"
+  = javascript_include_tag "/javascripts/codemirror/mode/xml"
+  = javascript_include_tag "/javascripts/codemirror/mode/markdown"
+  = javascript_include_tag "/javascripts/codemirror/mode/gfm"
+  = javascript_include_tag "/javascripts/codemirror/mode/javascript"
+  = javascript_include_tag "/javascripts/application"
 
 %body
   = yield
