@@ -1,0 +1,24 @@
+@import common
+
+.content
+  .editor
+    @include stretch-x
+    top: 40px
+    bottom: 40px
+
+    .CodeMirror
+      @include stretch-both
+      @include codeFont
+      height: 100%
+
+    .CodeMirror-scoll
+      @include stretch-both
+      overflow: scroll
+
+  .preview
+    @include stretch-x
+    top: 40px
+    bottom: 40px
+    padding: 0 20px
+    display: none
+    overflow: scroll

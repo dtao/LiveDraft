@@ -1,0 +1,11 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag("editor")
+  = stylesheet_link_tag("/pygments")
+
+- if current_user_owns_draft?
+  .editor
+    %textarea#draft
+      = @version.content if @version
+
+.preview
+  = markdown(@version.content) if @version

@@ -1,0 +1,27 @@
+// Colors, baby
+$gray:  #777
+$white: #fff
+$blue:  #bff
+$green: #bfb
+
+// Layout stuff
+@mixin stretch-x
+  position: absolute
+  left: 0
+  right: 0
+
+@mixin stretch-y
+  position: absolute
+  top: 0
+  bottom: 0
+
+@mixin stretch-both
+  @include stretch-x
+  @include stretch-y
+
+// Font stuff
+@mixin labelFont
+  font-family: Helvetica, Arial, sans-serif
+
+@mixin codeFont
+  font-family: Consolas, Inconsolata, monospace

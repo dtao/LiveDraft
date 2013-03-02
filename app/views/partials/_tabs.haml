@@ -1,0 +1,9 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag("tabs")
+
+- content_for(:javascripts) do
+  = javascript_include_tag("tabs")
+
+.tabs
+  = empty_link("Edit", :class => "edit-tab")
+  = empty_link("Preview", :class => "preview-tab")

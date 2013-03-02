@@ -1,0 +1,13 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag("toolbar")
+
+- content_for(:javascripts) do
+  = javascript_include_tag("toolbar")
+
+.toolbar
+  = session_panel
+
+  - if logged_in?
+    .actions
+      = empty_link("Save", :class => "save-draft")
+      = empty_link("Clear", :class => "clear-draft")

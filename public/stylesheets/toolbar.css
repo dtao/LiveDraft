@@ -1,0 +1,24 @@
+.content .toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  background-color: #777777;
+  color: white;
+  font-size: 75%;
+  font-weight: 300; }
+  .content .toolbar a {
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 40px;
+    color: #bbffff; }
+    .content .toolbar a:hover {
+      background-color: #aaaaaa; }
+  .content .toolbar .actions {
+    float: right; }
+    .content .toolbar .actions a {
+      color: #bbffbb; }

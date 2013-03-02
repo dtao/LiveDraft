@@ -1,6 +1,7 @@
 .env
 
 .sass-cache/
+db/*.db
 public/javascripts/codemirror/mode/**/
 log/
 tmp/
