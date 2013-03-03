@@ -5,5 +5,8 @@
   = javascript_include_tag("tabs")
 
 .tabs
-  = empty_link("Edit", :class => "edit-tab")
-  = empty_link("Preview", :class => "preview-tab")
+  - if current_user_owns_draft?
+    = empty_link("Edit", :class => "edit-tab selected")
+    = empty_link("Preview", :class => "preview-tab")
+  - else
+    = empty_link("View", :class => "preview-tab selected")

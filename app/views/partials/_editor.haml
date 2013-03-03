@@ -6,6 +6,9 @@
   .editor
     %textarea#draft
       = @version.content if @version
+  .preview(style="display: none;")
+    = markdown(@version.content) if @version
 
-.preview
-  = markdown(@version.content) if @version
+- else
+  .preview
+    = markdown(@version.content) if @version

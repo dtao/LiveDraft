@@ -1,10 +1,13 @@
 @import common
 
+@mixin content-panel
+  @include stretch-x
+  top: 40px
+  bottom: 40px
+
 .content
   .editor
-    @include stretch-x
-    top: 40px
-    bottom: 40px
+    @include content-panel
 
     .CodeMirror
       @include stretch-both
@@ -16,9 +19,6 @@
       overflow: scroll
 
   .preview
-    @include stretch-x
-    top: 40px
-    bottom: 40px
+    @include content-panel
     padding: 0 20px
-    display: none
     overflow: scroll

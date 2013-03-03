@@ -18,6 +18,9 @@
     color: #bbffff; }
     .content .tabs a:hover {
       background-color: #aaaaaa; }
+    .content .tabs a.selected {
+      background-color: white;
+      color: #00bbbb; }
   .content .tabs .actions {
     float: right; }
     .content .tabs .actions a {
