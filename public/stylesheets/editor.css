@@ -11,7 +11,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    font-family: Consolas, Inconsolata, monospace;
+    font-family: "Source Code Pro", monospace;
     height: 100%; }
   .content .editor .CodeMirror-scoll {
     position: absolute;
@@ -29,3 +29,5 @@
   bottom: 40px;
   padding: 0 20px;
   overflow: scroll; }
+  .content .preview h1, .content .preview h2, .content .preview h3 {
+    border-top: 1px solid black; }

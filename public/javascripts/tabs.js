@@ -1,20 +1,18 @@
 $(document).ready(function() {
-  var $editTab     = $(".edit-tab");
-  var $previewTab  = $(".preview-tab");
-  var $editorPage  = $(".editor");
-  var $previewPage = $(".preview");
+  var $content    = $(".content");
+  var $editTab    = $(".edit-tab");
+  var $previewTab = $(".preview-tab");
+  var $splitTab   = $(".side-by-side-tab");
 
   $editTab.click(function(){
-    $previewTab.removeClass("selected");
-    $editTab.addClass("selected");
-    $previewPage.hide();
-    $editorPage.show();
+    $content.attr("class", "content edit");
   });
 
   $previewTab.click(function(){
-    $editTab.removeClass("selected");
-    $previewTab.addClass("selected");
-    $editorPage.hide();
-    $previewPage.show();
+    $content.attr("class", "content preview");
+  });
+
+  $splitTab.click(function() {
+    $content.attr("class", "content split");
   });
 });

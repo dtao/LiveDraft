@@ -6,7 +6,8 @@
 
 .tabs
   - if current_user_owns_draft?
-    = empty_link("Edit", :class => "edit-tab selected")
+    = empty_link("Edit", :class => "edit-tab")
     = empty_link("Preview", :class => "preview-tab")
+    = empty_link("Side by side", :class => "side-by-side-tab")
   - else
     = empty_link("View", :class => "preview-tab selected")

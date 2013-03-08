@@ -2,15 +2,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   bottom: 0;
   height: 40px;
   line-height: 40px;
   padding: 0 10px;
   background-color: #777777;
   color: white;
-  font-size: 75%;
-  font-weight: 300; }
+  font-size: 75%; }
   .content .toolbar a {
     display: inline-block;
     padding: 0 10px;

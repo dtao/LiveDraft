@@ -11,7 +11,6 @@
     background-color: darken($gray, 20%)
     color: $white
     font-size: 75%
-    font-weight: 300
 
     a
       display: inline-block
@@ -31,3 +30,32 @@
 
       a
         color: $green
+
+.content.edit
+  .tabs
+    a.edit-tab
+      @extend .selected
+  .editor
+    display: block
+  .preview
+    display: none
+
+.content.preview
+  .tabs
+    a.preview-tab
+      @extend .selected
+  .editor
+    display: none
+  .preview
+    display: block
+
+.content.split
+  .tabs
+    a.side-by-side-tab
+      @extend .selected
+  .editor
+    display: block
+    right: 50%
+  .preview
+    display: block
+    left: 50%

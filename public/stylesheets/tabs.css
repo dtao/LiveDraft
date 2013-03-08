@@ -2,15 +2,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   top: 0;
   height: 40px;
   line-height: 40px;
   padding: 0 10px;
   background-color: #444444;
   color: white;
-  font-size: 75%;
-  font-weight: 300; }
+  font-size: 75%; }
   .content .tabs a {
     display: inline-block;
     padding: 0 10px;
@@ -18,10 +17,27 @@
     color: #bbffff; }
     .content .tabs a:hover {
       background-color: #aaaaaa; }
-    .content .tabs a.selected {
+    .content .tabs a.selected, .content.edit .tabs a.edit-tab, .content.preview .tabs a.preview-tab, .content.split .tabs a.side-by-side-tab {
       background-color: white;
       color: #00bbbb; }
   .content .tabs .actions {
     float: right; }
     .content .tabs .actions a {
       color: #bbffbb; }
+
+.content.edit .editor {
+  display: block; }
+.content.edit .preview {
+  display: none; }
+
+.content.preview .editor {
+  display: none; }
+.content.preview .preview {
+  display: block; }
+
+.content.split .editor {
+  display: block;
+  right: 50%; }
+.content.split .preview {
+  display: block;
+  left: 50%; }

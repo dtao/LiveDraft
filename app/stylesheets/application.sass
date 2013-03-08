@@ -8,17 +8,26 @@ body
   margin: 0
   padding: 0
 
+h1, h2, h3
+  @include labelFont
+  font-weight: 300
+
 a
   text-decoration: none
   &:hover
     text-decoration: underline
+
+pre
+  @include codeFont
+  background-color: #efefef
+  padding: 10px
 
 .content
   @include stretch-y
   left: 0
   right: 300px
   border-right: 1px solid black
-  font-size: 150%
+  font-size: 125%
 
 .comments
   @include stretch-y
