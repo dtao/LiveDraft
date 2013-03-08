@@ -44,6 +44,10 @@ class LiveDraft < Padrino::Application
     render(:redirect => "/#{@draft.token}")
   end
 
+  post "/preview" do
+    markdown(params["content"])
+  end
+
   get "/logout" do
     session.delete(:email)
     redirect("/")

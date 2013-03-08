@@ -31,3 +31,5 @@
   overflow: scroll; }
   .content .preview h1, .content .preview h2, .content .preview h3 {
     border-top: 1px solid black; }
+  .content .preview.loading {
+    opacity: 0.5; }

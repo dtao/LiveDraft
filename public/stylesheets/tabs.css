@@ -17,7 +17,7 @@
     color: #bbffff; }
     .content .tabs a:hover {
       background-color: #aaaaaa; }
-    .content .tabs a.selected, .content.edit .tabs a.edit-tab, .content.preview .tabs a.preview-tab, .content.split .tabs a.side-by-side-tab {
+    .content .tabs a.selected, .content.editing .tabs a.edit-tab, .content.viewing .tabs a.preview-tab, .content.split .tabs a.side-by-side-tab {
       background-color: white;
       color: #00bbbb; }
   .content .tabs .actions {
@@ -25,14 +25,14 @@
     .content .tabs .actions a {
       color: #bbffbb; }
 
-.content.edit .editor {
+.content.editing .editor {
   display: block; }
-.content.edit .preview {
+.content.editing .preview {
   display: none; }
 
-.content.preview .editor {
+.content.viewing .editor {
   display: none; }
-.content.preview .preview {
+.content.viewing .preview {
   display: block; }
 
 .content.split .editor {
