@@ -1,4 +1,4 @@
-.content.viewing
+.content(class="#{if current_user_owns_draft? then 'editing' else 'viewing' end}")
   = tabs
   = editor
   = toolbar

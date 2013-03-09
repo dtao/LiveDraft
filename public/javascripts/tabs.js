@@ -3,10 +3,11 @@ $(document).ready(function() {
   var $editTab    = $(".edit-tab");
   var $previewTab = $(".preview-tab");
   var $splitTab   = $(".side-by-side-tab");
+  var $draftsTab  = $(".drafts-tab");
 
   $editTab.click(function(){
     $content.attr("class", "content editing");
-    window.LiveDraft.Editors["draft"].refresh();
+    window.LiveDraft.Editor.refresh();
   });
 
   $previewTab.click(function(){
@@ -15,6 +16,10 @@ $(document).ready(function() {
 
   $splitTab.click(function() {
     $content.attr("class", "content split");
-    window.LiveDraft.Editors["draft"].refresh();
+    window.LiveDraft.Editor.refresh();
+  });
+
+  $draftsTab.click(function() {
+    $content.attr("class", "content list");
   });
 });

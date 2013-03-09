@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var editor = window.LiveDraft.Editors["draft"];
+  var editor = window.LiveDraft.Editor;
 
   $(".save-draft").click(function() {
     $.ajax({

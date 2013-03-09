@@ -28,3 +28,49 @@
 
     &.loading
       opacity: 0.5
+
+  .drafts
+    @include content-panel
+    padding: 0 20px
+
+    ul
+      display: table
+      padding-left: 0
+      width: 100%
+
+      @for $i from 1 through 10
+        li:nth-child(#{$i})
+          opacity: 1.0 - (0.1 * $i)
+
+      li
+        @include labelFont
+        display: table-row
+        background-color: lighten($gray, 50%)
+        color: darken($blue, 50%)
+
+        div
+          display: table-cell
+          padding: 5px
+
+        .updated:before
+          content: "last updated "
+          color: lighten($gray, 20%)
+          font-size: 75%
+
+        .edits:after
+          content: " edit(s)"
+          color: lighten($gray, 20%)
+          font-size: 75%
+
+        a
+          color: inherit
+
+          &:hover
+            color: $green
+            text-decoration: none
+
+        &:hover
+          background-color: $gray
+          color: $blue
+          font-style: italic
+          opacity: 1.0

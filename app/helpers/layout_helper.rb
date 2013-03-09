@@ -12,6 +12,12 @@ LiveDraft.helpers do
     render_partial(:editor)
   end
 
+  def drafts
+    render_partial(:drafts, :locals => {
+      :drafts => Draft.all(:email => current_user, :order => [:id.desc])
+    })
+  end
+
   def toolbar
     render_partial(:toolbar)
   end

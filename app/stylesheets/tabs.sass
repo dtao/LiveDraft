@@ -21,6 +21,9 @@
       &:hover
         background-color: lighten($gray, 20%)
 
+      &.new-link
+        color: lighten($pink, 10%)
+
       &.selected
         background-color: $white
         color: darken($blue, 50%)
@@ -31,21 +34,21 @@
       a
         color: $green
 
+.content
+  .page
+    display: none
+
 .content.editing
   .tabs
     a.edit-tab
       @extend .selected
   .editor
     display: block
-  .preview
-    display: none
 
 .content.viewing
   .tabs
     a.preview-tab
       @extend .selected
-  .editor
-    display: none
   .preview
     display: block
 
@@ -55,7 +58,15 @@
       @extend .selected
   .editor
     display: block
+    border-right: 1px solid black
     right: 50%
   .preview
     display: block
     left: 50%
+
+.content.list
+  .tabs
+    a.drafts-tab
+      @extend .selected
+  .drafts
+    display: block

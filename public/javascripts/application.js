@@ -28,6 +28,7 @@ function throttle(delay, callback) {
 }
 
 $(document).ready(function() {
+  var $editor  = $(".editor textarea");
   var $preview = $(".preview");
 
   function updatePreview(editor) {
@@ -50,15 +51,13 @@ $(document).ready(function() {
     });
   }
 
-  $(".editor textarea").each(function() {
-    window.LiveDraft.Editors[this.id] = CodeMirror.fromTextArea(this, {
-      mode: "gfm",
-      lineNumbers: true,
-      lineWrapping: true
-    });
+  window.LiveDraft.Editor = CodeMirror.fromTextArea($editor[0], {
+    mode: "gfm",
+    lineNumbers: true,
+    lineWrapping: true
   });
 
-  window.LiveDraft.Editors["draft"].on("change", throttle(1000, function(editor, change) {
+  window.LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {
     updatePreview(editor);
   }));
 });

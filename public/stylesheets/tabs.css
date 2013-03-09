@@ -17,7 +17,9 @@
     color: #bbffff; }
     .content .tabs a:hover {
       background-color: #aaaaaa; }
-    .content .tabs a.selected, .content.editing .tabs a.edit-tab, .content.viewing .tabs a.preview-tab, .content.split .tabs a.side-by-side-tab {
+    .content .tabs a.new-link {
+      color: #f75f8a; }
+    .content .tabs a.selected, .content.editing .tabs a.edit-tab, .content.viewing .tabs a.preview-tab, .content.split .tabs a.side-by-side-tab, .content.list .tabs a.drafts-tab {
       background-color: white;
       color: #00bbbb; }
   .content .tabs .actions {
@@ -25,19 +27,22 @@
     .content .tabs .actions a {
       color: #bbffbb; }
 
-.content.editing .editor {
-  display: block; }
-.content.editing .preview {
+.content .page {
   display: none; }
 
-.content.viewing .editor {
-  display: none; }
+.content.editing .editor {
+  display: block; }
+
 .content.viewing .preview {
   display: block; }
 
 .content.split .editor {
   display: block;
+  border-right: 1px solid black;
   right: 50%; }
 .content.split .preview {
   display: block;
   left: 50%; }
+
+.content.list .drafts {
+  display: block; }

@@ -3,12 +3,16 @@
   = stylesheet_link_tag("/pygments")
 
 - if current_user_owns_draft?
-  .editor
-    %textarea#draft
+  .page.editor
+    %textarea
       = @version.content if @version
-  .preview
+  .page.preview
     = markdown(@version.content) if @version
 
+  - if logged_in?
+    .page.drafts
+      = drafts
+
 - else
-  .preview
+  .page.preview
     = markdown(@version.content) if @version
