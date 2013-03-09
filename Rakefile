@@ -5,4 +5,9 @@ namespace :db do
   task :init do
     DataMapper.auto_migrate!
   end
+
+  desc "Update the database"
+  task :update do
+    DataMapper.auto_upgrade!
+  end
 end

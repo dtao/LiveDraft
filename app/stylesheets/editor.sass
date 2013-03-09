@@ -52,15 +52,21 @@
           display: table-cell
           padding: 5px
 
+          &:last-child
+            padding-right: 20px
+
         .updated:before
           content: "last updated "
           color: lighten($gray, 20%)
           font-size: 75%
 
-        .edits:after
-          content: " edit(s)"
-          color: lighten($gray, 20%)
-          font-size: 75%
+        .edits
+          text-align: right
+
+          &:after
+            content: " edit(s)"
+            color: lighten($gray, 20%)
+            font-size: 75%
 
         a
           color: inherit

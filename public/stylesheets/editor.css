@@ -72,14 +72,18 @@
       .content .drafts ul li div {
         display: table-cell;
         padding: 5px; }
+        .content .drafts ul li div:last-child {
+          padding-right: 20px; }
       .content .drafts ul li .updated:before {
         content: "last updated ";
         color: #aaaaaa;
         font-size: 75%; }
-      .content .drafts ul li .edits:after {
-        content: " edit(s)";
-        color: #aaaaaa;
-        font-size: 75%; }
+      .content .drafts ul li .edits {
+        text-align: right; }
+        .content .drafts ul li .edits:after {
+          content: " edit(s)";
+          color: #aaaaaa;
+          font-size: 75%; }
       .content .drafts ul li a {
         color: inherit; }
         .content .drafts ul li a:hover {

@@ -14,6 +14,7 @@ gem "sass"
 gem "haml"
 gem "json"
 gem "glorify"
+gem "nokogiri"
 gem "dm-sqlite-adapter"
 gem "dm-validations"
 gem "dm-timestamps"
@@ -27,3 +28,7 @@ gem "omniauth-google-oauth2"
 
 # Padrino Stable Gem
 gem "padrino", "0.10.7"
+
+group :development do
+  gem "pry"
+end

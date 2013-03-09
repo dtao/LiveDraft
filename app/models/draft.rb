@@ -13,4 +13,8 @@ class Draft
   before :create do
     self.token ||= Randy.string(8)
   end
+
+  def title
+    self.latest_version.try(:title)
+  end
 end
