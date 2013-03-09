@@ -15,7 +15,8 @@ gem "haml"
 gem "json"
 gem "glorify"
 gem "nokogiri"
-gem "dm-sqlite-adapter"
+gem "pg"
+gem "dm-postgres-adapter"
 gem "dm-validations"
 gem "dm-timestamps"
 gem "dm-migrations"
@@ -30,5 +31,6 @@ gem "omniauth-google-oauth2"
 gem "padrino", "0.10.7"
 
 group :development do
+  gem "dm-sqlite-adapter"
   gem "pry"
 end
