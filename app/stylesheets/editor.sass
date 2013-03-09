@@ -38,9 +38,12 @@
       padding-left: 0
       width: 100%
 
-      @for $i from 1 through 10
+      @for $i from 1 through 20
         li:nth-child(#{$i})
-          opacity: 1.0 - (0.1 * $i)
+          opacity: 1.0 - (0.05 * ($i - 1))
+
+      li:nth-child(n+21)
+        opacity: 0
 
       li
         @include labelFont
@@ -59,6 +62,7 @@
           content: "last updated "
           color: lighten($gray, 20%)
           font-size: 75%
+          margin-right: 5px
 
         .edits
           text-align: right
@@ -67,6 +71,7 @@
             content: " edit(s)"
             color: lighten($gray, 20%)
             font-size: 75%
+            margin-left: 5px
 
         a
           color: inherit

@@ -14,7 +14,7 @@ LiveDraft.helpers do
 
   def drafts
     render_partial(:drafts, :locals => {
-      :drafts => Draft.all(:email => current_user, :order => [:id.desc])
+      :drafts => Draft.all(:email => current_user, :limit => 20, :order => [:id.desc])
     })
   end
 
