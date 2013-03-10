@@ -1,0 +1,14 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag("comments")
+
+- form_tag("/comments/#{@draft.token}") do
+  = text_field_tag(:email, :placeholder => "E-mail address")
+  = text_area_tag(:content, :placeholder => "Comment text")
+  = submit_tag("Comment")
+
+- @draft.comments.each do |comment|
+  .comment
+    .picture= gravatar(comment.email)
+    .name= comment.email
+    .time= smart_date_format(comment.created_at)
+    .text= comment.content

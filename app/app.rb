@@ -48,6 +48,12 @@ class LiveDraft < Padrino::Application
     markdown(params["content"])
   end
 
+  post "/comments/:token" do |token|
+    @draft = Draft.first(:token => token)
+    @draft.comments.create(:email => params["email"], :content => params["content"])
+    redirect("/#{token}")
+  end
+
   get "/logout" do
     session.delete(:email)
     redirect("/")

@@ -1,0 +1,48 @@
+@import common
+
+.comments
+  form
+    @include border-box
+    padding: 5px
+    text-align: right
+    width: 100%
+
+    input[type="text"], textarea
+      @include border-box
+      padding: 5px
+      width: 100%
+
+    input[type="text"]
+      margin-bottom: 5px
+
+    textarea
+      height: 75px
+
+  .comment
+    @include border-box
+    position: relative
+    border-bottom: 1px solid black
+    padding: 5px
+    min-height: 60px
+    width: 100%
+
+    .picture
+      position: absolute
+      top: 5px
+      left: 5px
+
+    .name,
+    .time,
+    .text
+      @include simpleFont
+      padding-left: 55px
+
+    .name,
+    .time
+      font-size: 12px
+
+    .time
+      color: $gray
+
+    &:hover
+      background-color: $yellow

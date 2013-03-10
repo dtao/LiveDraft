@@ -1,14 +1,16 @@
 class DraftVersion
   include DataMapper::Resource
 
-  belongs_to :draft, :touch => true
+  belongs_to :draft
 
   property :id,         Serial
-  property :draft_id,   Integer
+  property :draft_id,   Integer, :index => true, :required => true
   property :title,      String
-  property :content,    Text
+  property :content,    Text,    :required => true
   property :created_at, DateTime
   property :updated_at, DateTime
+
+  validates_presence_of :content
 
   before :create do
     mkdn = Redcarpet::Markdown.new(Redcarpet::Render::HTML)

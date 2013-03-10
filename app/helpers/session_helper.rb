@@ -1,9 +1,9 @@
 LiveDraft.helpers do
   def session_panel
     if logged_in?
-      render_partial(:session)
+      partial(:session)
     else
-      render_partial(:login)
+      partial(:login)
     end
   end
 end
