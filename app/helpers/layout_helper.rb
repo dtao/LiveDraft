@@ -24,4 +24,8 @@ LiveDraft.helpers do
   def comments
     partial(:comments) unless @draft.nil?
   end
+
+  def render_comment(comment)
+    partial(:comment, :locals => { :comment => comment })
+  end
 end

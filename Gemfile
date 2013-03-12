@@ -26,6 +26,10 @@ gem "dm-transactions"
 gem "dm-core"
 gem "omniauth"
 gem "omniauth-google-oauth2"
+gem "pusher"
+
+# Required for asynchronous Pusher updates
+gem "em-http-request"
 
 # Padrino Stable Gem
 gem "padrino", "0.10.7"

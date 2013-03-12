@@ -13,8 +13,13 @@
   = javascript_include_tag "/javascripts/codemirror/mode/markdown"
   = javascript_include_tag "/javascripts/codemirror/mode/gfm"
   = javascript_include_tag "/javascripts/codemirror/mode/javascript"
+  = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
   = javascript_include_tag "/javascripts/application"
   = yield_content(:javascripts)
+
+  :javascript
+    LiveDraft.DraftId = "#{@draft.try(:token)}";
+    LiveDraft.PusherKey = "d99cf129f58471278424";
 
 %body
   = yield

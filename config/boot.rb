@@ -34,8 +34,9 @@ Bundler.require(:default, PADRINO_ENV)
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
-  GOOGLE_CLIENT_ID = ENV["GOOGLE_CLIENT_ID"]
-  GOOGLE_CLIENT_SECRET = ENV["GOOGLE_CLIENT_SECRET"]
+  Pusher.app_id = ENV["PUSHER_APP_ID"]
+  Pusher.key    = ENV["PUSHER_KEY"]
+  Pusher.secret = ENV["PUSHER_SECRET"]
 end
 
 ##

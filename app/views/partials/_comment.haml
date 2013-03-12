@@ -1,0 +1,5 @@
+.comment
+  .picture= gravatar(comment.email)
+  .name= comment.email
+  .time= smart_date_format(comment.created_at)
+  .text= comment.content

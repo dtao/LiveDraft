@@ -12,7 +12,7 @@ class LiveDraft < Padrino::Application
   #
   configure do
     use OmniAuth::Builder do
-      provider :google_oauth2, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, { access_type: "online", approval_prompt: "" }
+      provider :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], { access_type: "online", approval_prompt: "" }
     end
 
     Tilt.prefer Sinatra::Glorify::Template
@@ -66,7 +66,12 @@ class LiveDraft < Padrino::Application
     end
 
     @draft = Draft.first(:token => token)
-    @draft.comments.create(:email => email, :content => params["content"])
+    comment = @draft.comments.create(:email => email, :content => params["content"])
+
+    Pusher.trigger_async(@draft.token, "comment", {
+      :html => render_comment(comment)
+    })
+
     redirect("/#{token}")
   end
 
