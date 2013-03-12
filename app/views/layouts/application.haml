@@ -19,7 +19,7 @@
 
   :javascript
     LiveDraft.DraftId = "#{@draft.try(:token)}";
-    LiveDraft.PusherKey = "d99cf129f58471278424";
+    LiveDraft.PusherKey = "#{ENV['PUSHER_KEY']}";
 
 %body
   = yield
