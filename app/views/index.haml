@@ -1,7 +1,7 @@
-.content(class="#{if current_user_owns_draft? then 'split' else 'viewing' end}")
+%section.content(class="#{if current_user_owns_draft? then 'split' else 'viewing' end}")
   = tabs
   = editor
   = toolbar
 
-.comments
+%section.comments
   = comments

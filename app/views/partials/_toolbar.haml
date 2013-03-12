@@ -7,7 +7,11 @@
 .toolbar
   = session_panel
 
-  - if logged_in?
+  - if current_user_owns_draft?
     .actions
       = empty_link("Save", :class => "save-draft")
       = empty_link("Clear", :class => "clear-draft")
+      - if @draft.try(:public?)
+        = empty_link("Unpublish", :class => "unpublish-draft")
+      - else
+        = empty_link("Publish", :class => "publish-draft")

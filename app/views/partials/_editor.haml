@@ -5,17 +5,9 @@
 - content_for(:javascripts) do
   = javascript_include_tag("editor")
 
-- if current_user_owns_draft?
-  .page.editor
-    %textarea
-      = @version.content if @version
-  .page.preview
-    = markdown(@version.content) if @version
-
-  - if logged_in?
-    .page.drafts
-      = drafts
-
-- else
-  .page.preview
-    = markdown(@version.content) if @version
+.page.editor
+  %textarea= @version.content if @version
+.page.preview
+  = markdown(@version.content) if @version
+.page.drafts
+  = drafts

@@ -10,8 +10,9 @@
   - if current_user_owns_draft?
     = empty_link("Edit", :class => "edit-tab")
     = empty_link("Preview", :class => "preview-tab")
-    = empty_link("Side by side", :class => "side-by-side-tab")
-    - if logged_in?
-      = empty_link("Drafts", :class => "drafts-tab")
   - else
-    = empty_link("View", :class => "preview-tab selected")
+    = empty_link("Source", :class => "edit-tab")
+    = empty_link("View", :class => "preview-tab")
+
+  = empty_link("Side by side", :class => "side-by-side-tab")
+  = empty_link("Drafts", :class => "drafts-tab")

@@ -15,28 +15,35 @@
     margin-bottom: 5px; }
   .comments form textarea {
     height: 75px; }
-.comments .comment {
+.comments .comment-list .comment {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
-  border-bottom: 1px solid black;
+  border-top: 2px solid #c3c3c3;
   padding: 5px;
   min-height: 60px;
   width: 100%; }
-  .comments .comment .picture {
+  .comments .comment-list .comment div {
+    cursor: default; }
+  .comments .comment-list .comment .picture {
     position: absolute;
     top: 5px;
     left: 5px; }
-  .comments .comment .name,
-  .comments .comment .time,
-  .comments .comment .text {
+  .comments .comment-list .comment .name,
+  .comments .comment-list .comment .time,
+  .comments .comment-list .comment .text {
     font-family: Helvetica, Arial, sans-serif;
     padding-left: 55px; }
-  .comments .comment .name,
-  .comments .comment .time {
+  .comments .comment-list .comment .name,
+  .comments .comment-list .comment .time {
     font-size: 12px; }
-  .comments .comment .time {
+  .comments .comment-list .comment .name:empty:before {
+    content: "(anonymous)"; }
+  .comments .comment-list .comment .name:after {
+    content: " said:"; }
+  .comments .comment-list .comment .time {
     color: #777777; }
-  .comments .comment:hover {
-    background-color: #ffffee; }
+  .comments .comment-list .comment:hover {
+    background-color: #ffffee;
+    border-top: 2px solid #00eeee; }

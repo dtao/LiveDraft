@@ -4,10 +4,11 @@
 - content_for(:javascripts) do
   = javascript_include_tag("comments")
 
-- form_tag("/comments/#{@draft.token}") do
+- form_tag("/comment/#{@draft.token}") do
   = text_field_tag(:email, :placeholder => "E-mail address") unless logged_in?
   = text_area_tag(:content, :placeholder => "Comment text")
   = submit_tag("Comment")
 
-- @draft.comments.each do |comment|
-  = render_comment(comment)
+.comment-list
+  - @draft.comments(:order => [:id.desc]).each do |comment|
+    = single_comment(comment)

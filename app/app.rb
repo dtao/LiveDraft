@@ -32,7 +32,7 @@ class LiveDraft < Padrino::Application
     end
 
     def current_user_owns_draft?
-      @draft.nil? || @draft.user == current_user
+      @draft.nil? || (logged_in? && @draft.user == current_user)
     end
   end
 
@@ -43,16 +43,24 @@ class LiveDraft < Padrino::Application
   post "/" do
     Draft.transaction do
       @draft = Draft.create(:user => current_user)
-      @version = @draft.versions.create(:content => params["content"])
+      @draft.versions.create(:content => params["content"])
     end
-    render(:redirect => "/#{@draft.token}")
+    render(:redirect => @draft.path)
+  end
+
+  post "/publish" do
+    Draft.transaction do
+      @draft = Draft.create(:user => current_user, :published_at => Time.now)
+      @draft.versions.create(:content => params["content"])
+    end
+    render(:redirect => @draft.path)
   end
 
   post "/preview" do
     markdown(params["content"])
   end
 
-  post "/comments/:token" do |token|
+  post "/comment/:token" do |token|
     email = current_user.try(:email) || params["email"]
 
     if email.blank?
@@ -69,10 +77,22 @@ class LiveDraft < Padrino::Application
     comment = @draft.comments.create(:email => email, :content => params["content"])
 
     Pusher.trigger_async(@draft.token, "comment", {
-      :html => render_comment(comment)
+      :html => single_comment(comment)
     })
 
-    redirect("/#{token}")
+    redirect(@draft.path)
+  end
+
+  post "/publish/:token" do |token|
+    draft = Draft.first(:token => token)
+    draft.update(:published_at => Time.now)
+    render(:redirect => draft.path)
+  end
+
+  post "/unpublish/:token" do |token|
+    draft = Draft.first(:token => token)
+    draft.update(:published_at => nil)
+    render(:redirect => draft.path)
   end
 
   get "/logout" do
@@ -93,16 +113,16 @@ class LiveDraft < Padrino::Application
     redirect("/")
   end
 
-  get "/:token" do |token|
-    @draft = Draft.first(:token => token)
+  get %r{/([^/]*)(?:/.*)?} do |token|
+    @draft   = Draft.first(:token => token)
     @version = @draft.latest_version
     render :index
   end
 
-  post "/:token" do |token|
+  post %r{/([^/]*)(?:/.*)?} do |token|
     @draft = Draft.first(:token => token)
     halt render(:error => "You're not allowed to edit this draft!") if !current_user_owns_draft?
     @version = @draft.versions.create(:content => params["content"])
-    render(:redirect => "/#{@draft.token}")
+    render(:redirect => @draft.path)
   end
 end

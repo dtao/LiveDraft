@@ -1,6 +1,10 @@
 LiveDraft.helpers do
-  def partial(name, options={})
-    render_partial(:"partials/#{name}", options)
+  def partial(name, locals={}, options={})
+    render_partial(:"partials/#{name}", options.merge(:locals => locals))
+  end
+
+  def basic_partial(name, value)
+    partial(name, name => value)
   end
 
   def tabs
@@ -12,9 +16,11 @@ LiveDraft.helpers do
   end
 
   def drafts
-    partial(:drafts, :locals => {
-      :drafts => Draft.all(:user => current_user, :limit => 20, :order => [:id.desc])
-    })
+    partial(:drafts)
+  end
+
+  def draft_list(drafts)
+    partial(:draft_list, :drafts => drafts)
   end
 
   def toolbar
@@ -25,7 +31,7 @@ LiveDraft.helpers do
     partial(:comments) unless @draft.nil?
   end
 
-  def render_comment(comment)
-    partial(:comment, :locals => { :comment => comment })
+  def single_comment(comment)
+    basic_partial(:comment, comment)
   end
 end

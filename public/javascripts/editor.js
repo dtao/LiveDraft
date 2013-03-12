@@ -50,7 +50,8 @@ $(document).ready(function() {
   window.LiveDraft.Editor = CodeMirror.fromTextArea($editor[0], {
     mode: "gfm",
     lineNumbers: true,
-    lineWrapping: true
+    lineWrapping: true,
+    readOnly: LiveDraft.ReadOnly
   });
 
   window.LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {

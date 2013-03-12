@@ -1,0 +1,8 @@
+.draft-list
+  - drafts.each do |draft|
+    %a.draft(href="/#{draft.token}/#{draft.title.try(:parameterize)}")
+      .created= draft.title || draft.created_at.strftime("%A, %B %d, %Y")
+      .owner= draft.user.try(:name)
+      .updated= draft.updated_at.strftime("%H:%M %p on %A")
+      .published= draft.published_at.try(:strftime, "%H:%M %p on %A")
+      .edits= draft.versions.count

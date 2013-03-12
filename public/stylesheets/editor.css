@@ -105,11 +105,22 @@
         padding: 5px; }
         .content .drafts .draft-list .draft div:last-child {
           padding-right: 20px; }
+      .content .drafts .draft-list .draft .owner:empty:before {
+        content: "(anonymous)";
+        color: #aaaaaa;
+        font-size: 75%; }
       .content .drafts .draft-list .draft .updated:before {
         content: "last updated ";
         color: #aaaaaa;
         font-size: 75%;
         margin-right: 5px; }
+      .content .drafts .draft-list .draft .published:before {
+        content: "published ";
+        color: #aaaaaa;
+        font-size: 75%;
+        margin-right: 5px; }
+      .content .drafts .draft-list .draft .published:empty:before {
+        content: "unpublished"; }
       .content .drafts .draft-list .draft .edits {
         text-align: right; }
         .content .drafts .draft-list .draft .edits:after {
