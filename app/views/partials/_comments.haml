@@ -2,7 +2,7 @@
   = stylesheet_link_tag("comments")
 
 - form_tag("/comments/#{@draft.token}") do
-  = text_field_tag(:email, :placeholder => "E-mail address")
+  = text_field_tag(:email, :placeholder => "E-mail address") unless logged_in?
   = text_area_tag(:content, :placeholder => "Comment text")
   = submit_tag("Comment")
 

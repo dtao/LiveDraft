@@ -2,6 +2,7 @@ class Comment
   include DataMapper::Resource
 
   belongs_to :draft
+  belongs_to :user, :parent_key => :email, :child_key => :email
 
   property :id,         Serial
   property :draft_id,   Integer, :index => true, :required => true

@@ -13,7 +13,7 @@ LiveDraft.helpers do
 
   def drafts
     partial(:drafts, :locals => {
-      :drafts => Draft.all(:email => current_user, :limit => 20, :order => [:id.desc])
+      :drafts => Draft.all(:user => current_user, :limit => 20, :order => [:id.desc])
     })
   end
 
@@ -22,6 +22,6 @@ LiveDraft.helpers do
   end
 
   def comments
-    partial(:comments)
+    partial(:comments) unless @draft.nil?
   end
 end

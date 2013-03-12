@@ -20,15 +20,19 @@ class LiveDraft < Padrino::Application
 
   helpers do
     def logged_in?
-      !!session[:email]
+      !!current_user
     end
 
     def current_user
-      @current_user ||= session[:email]
+      if !@current_user_cached
+        @current_user = User.get(session[:user_id])
+        @current_user_cached = true
+      end
+      @current_user
     end
 
     def current_user_owns_draft?
-      @draft.nil? || @draft.email == current_user
+      @draft.nil? || @draft.user == current_user
     end
   end
 
@@ -38,7 +42,7 @@ class LiveDraft < Padrino::Application
 
   post "/" do
     Draft.transaction do
-      @draft = Draft.create(:email => current_user)
+      @draft = Draft.create(:user => current_user)
       @version = @draft.versions.create(:content => params["content"])
     end
     render(:redirect => "/#{@draft.token}")
@@ -49,18 +53,38 @@ class LiveDraft < Padrino::Application
   end
 
   post "/comments/:token" do |token|
+    email = current_user.try(:email) || params["email"]
+
+    if email.blank?
+      flash[:notice] = "You must supply an e-mail address."
+      halt redirect("/#{token}")
+    end
+
+    if !logged_in? && User.first(:email => email)
+      flash[:notice] = "A user with that e-mail address exists (log in to comment)."
+      halt redirect("/#{token}")
+    end
+
     @draft = Draft.first(:token => token)
-    @draft.comments.create(:email => params["email"], :content => params["content"])
+    @draft.comments.create(:email => email, :content => params["content"])
     redirect("/#{token}")
   end
 
   get "/logout" do
-    session.delete(:email)
+    session.delete(:user_id)
     redirect("/")
   end
 
   get "/auth/google_oauth2/callback" do
-    session[:email] = request.env["omniauth.auth"]["info"]["email"]
+    user_info = request.env["omniauth.auth"]["info"]
+
+    user = User.first(:email => user_info["email"]) || User.create({
+      :email => user_info["email"],
+      :name  => user_info["name"]
+    })
+
+    session[:user_id] = user.id
+
     redirect("/")
   end
 

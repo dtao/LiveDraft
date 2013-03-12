@@ -33,23 +33,35 @@
     @include content-panel
     padding: 0 20px
 
-    ul
+    .draft-list
       display: table
       padding-left: 0
       width: 100%
 
       @for $i from 1 through 20
-        li:nth-child(#{$i})
+        .draft:nth-child(#{$i})
           opacity: 1.0 - (0.05 * ($i - 1))
 
-      li:nth-child(n+21)
+      .draft:nth-child(n+21)
         opacity: 0
 
-      li
+      .draft
         @include labelFont
         display: table-row
         background-color: lighten($gray, 50%)
         color: darken($blue, 50%)
+
+        &:hover
+          background-color: $gray
+          font-style: italic
+          opacity: 1.0
+          text-decoration: none
+
+          div
+            color: $blue
+
+          div:first-child
+            color: $green
 
         div
           display: table-cell
@@ -72,16 +84,3 @@
             color: lighten($gray, 20%)
             font-size: 75%
             margin-left: 5px
-
-        a
-          color: inherit
-
-          &:hover
-            color: $green
-            text-decoration: none
-
-        &:hover
-          background-color: $gray
-          color: $blue
-          font-style: italic
-          opacity: 1.0

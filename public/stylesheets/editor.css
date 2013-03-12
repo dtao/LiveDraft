@@ -40,81 +40,80 @@
   top: 40px;
   bottom: 40px;
   padding: 0 20px; }
-  .content .drafts ul {
+  .content .drafts .draft-list {
     display: table;
     padding-left: 0;
     width: 100%; }
-    .content .drafts ul li:nth-child(1) {
+    .content .drafts .draft-list .draft:nth-child(1) {
       opacity: 1; }
-    .content .drafts ul li:nth-child(2) {
+    .content .drafts .draft-list .draft:nth-child(2) {
       opacity: 0.95; }
-    .content .drafts ul li:nth-child(3) {
+    .content .drafts .draft-list .draft:nth-child(3) {
       opacity: 0.9; }
-    .content .drafts ul li:nth-child(4) {
+    .content .drafts .draft-list .draft:nth-child(4) {
       opacity: 0.85; }
-    .content .drafts ul li:nth-child(5) {
+    .content .drafts .draft-list .draft:nth-child(5) {
       opacity: 0.8; }
-    .content .drafts ul li:nth-child(6) {
+    .content .drafts .draft-list .draft:nth-child(6) {
       opacity: 0.75; }
-    .content .drafts ul li:nth-child(7) {
+    .content .drafts .draft-list .draft:nth-child(7) {
       opacity: 0.7; }
-    .content .drafts ul li:nth-child(8) {
+    .content .drafts .draft-list .draft:nth-child(8) {
       opacity: 0.65; }
-    .content .drafts ul li:nth-child(9) {
+    .content .drafts .draft-list .draft:nth-child(9) {
       opacity: 0.6; }
-    .content .drafts ul li:nth-child(10) {
+    .content .drafts .draft-list .draft:nth-child(10) {
       opacity: 0.55; }
-    .content .drafts ul li:nth-child(11) {
+    .content .drafts .draft-list .draft:nth-child(11) {
       opacity: 0.5; }
-    .content .drafts ul li:nth-child(12) {
+    .content .drafts .draft-list .draft:nth-child(12) {
       opacity: 0.45; }
-    .content .drafts ul li:nth-child(13) {
+    .content .drafts .draft-list .draft:nth-child(13) {
       opacity: 0.4; }
-    .content .drafts ul li:nth-child(14) {
+    .content .drafts .draft-list .draft:nth-child(14) {
       opacity: 0.35; }
-    .content .drafts ul li:nth-child(15) {
+    .content .drafts .draft-list .draft:nth-child(15) {
       opacity: 0.3; }
-    .content .drafts ul li:nth-child(16) {
+    .content .drafts .draft-list .draft:nth-child(16) {
       opacity: 0.25; }
-    .content .drafts ul li:nth-child(17) {
+    .content .drafts .draft-list .draft:nth-child(17) {
       opacity: 0.2; }
-    .content .drafts ul li:nth-child(18) {
+    .content .drafts .draft-list .draft:nth-child(18) {
       opacity: 0.15; }
-    .content .drafts ul li:nth-child(19) {
+    .content .drafts .draft-list .draft:nth-child(19) {
       opacity: 0.1; }
-    .content .drafts ul li:nth-child(20) {
+    .content .drafts .draft-list .draft:nth-child(20) {
       opacity: 0.05; }
-    .content .drafts ul li:nth-child(n+21) {
+    .content .drafts .draft-list .draft:nth-child(n+21) {
       opacity: 0; }
-    .content .drafts ul li {
+    .content .drafts .draft-list .draft {
       font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
       display: table-row;
       background-color: #f6f6f6;
       color: #00bbbb; }
-      .content .drafts ul li div {
+      .content .drafts .draft-list .draft:hover {
+        background-color: #777777;
+        font-style: italic;
+        opacity: 1;
+        text-decoration: none; }
+        .content .drafts .draft-list .draft:hover div {
+          color: #bbffff; }
+        .content .drafts .draft-list .draft:hover div:first-child {
+          color: #bbffbb; }
+      .content .drafts .draft-list .draft div {
         display: table-cell;
         padding: 5px; }
-        .content .drafts ul li div:last-child {
+        .content .drafts .draft-list .draft div:last-child {
           padding-right: 20px; }
-      .content .drafts ul li .updated:before {
+      .content .drafts .draft-list .draft .updated:before {
         content: "last updated ";
         color: #aaaaaa;
         font-size: 75%;
         margin-right: 5px; }
-      .content .drafts ul li .edits {
+      .content .drafts .draft-list .draft .edits {
         text-align: right; }
-        .content .drafts ul li .edits:after {
+        .content .drafts .draft-list .draft .edits:after {
           content: " edit(s)";
           color: #aaaaaa;
           font-size: 75%;
           margin-left: 5px; }
-      .content .drafts ul li a {
-        color: inherit; }
-        .content .drafts ul li a:hover {
-          color: #bbffbb;
-          text-decoration: none; }
-      .content .drafts ul li:hover {
-        background-color: #777777;
-        color: #bbffff;
-        font-style: italic;
-        opacity: 1; }

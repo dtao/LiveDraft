@@ -33,3 +33,38 @@ pre
   @include stretch-y
   right: 0
   width: 300px
+
+#notice
+  @include simpleFont
+  position: fixed
+  top: 50%
+  left: 0
+  right: 0
+  margin-top: -16px
+  color: $white
+  font-size: 32px
+  font-weight: bold
+  letter-spacing: -1px
+  text-align: center
+  z-index: 100
+
+  &:before
+    content: ""
+    position: fixed
+    top: 50%
+    left: 0
+    right: 0
+    height: 300px
+    margin-top: -150px
+    background-color: $black
+    opacity: 0.5
+    z-index: -1
+
+  &:after
+    content: "(click anywhere to dismiss)"
+    position: fixed
+    top: 50%
+    right: 10px
+    margin-top: -140px
+    font-size: 12px
+    z-index: 1
