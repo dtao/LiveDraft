@@ -28,33 +28,45 @@ $(document).ready(function() {
   }
 
   function updatePreview(editor) {
-    $preview.addClass("loading");
+    // $preview.addClass("loading");
+    $.ajax($.extend(getUpdatePreviewOptions(editor), {
+      complete: function() {
+        // $preview.removeClass("loading");
+      }
+    }));
+  }
 
-    $.ajax({
+  function getUpdatePreviewOptions(editor) {
+    var options = {
       url: "/preview",
       type: "POST",
       dataType: "html",
-      data: { content: editor.getValue() },
-      success: function(html) {
+      data: { content: editor.getValue() }
+    };
+
+    if (LiveDraft.DraftId) {
+      options.url += "/" + LiveDraft.DraftId;
+
+    } else {
+      options.success = function(html) {
         $preview.html(html);
-      },
-      error: function() {
+      };
+      options.error = function() {
         alert("Gah, something went wrong!");
-      },
-      complete: function() {
-        $preview.removeClass("loading");
-      }
-    });
+      };
+    }
+
+    return options;
   }
 
-  window.LiveDraft.Editor = CodeMirror.fromTextArea($editor[0], {
+  LiveDraft.Editor = CodeMirror.fromTextArea($editor[0], {
     mode: "gfm",
     lineNumbers: true,
     lineWrapping: true,
     readOnly: LiveDraft.ReadOnly
   });
 
-  window.LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {
+  LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {
     updatePreview(editor);
   }));
 });

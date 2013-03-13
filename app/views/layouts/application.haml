@@ -6,21 +6,23 @@
   = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700"
   = stylesheet_link_tag "application"
   = yield_content(:stylesheets)
-  = javascript_include_tag "/javascripts/jquery-1.9.1"
-  = javascript_include_tag "/javascripts/codemirror/codemirror-3.1"
-  = javascript_include_tag "/javascripts/codemirror/overlay"
-  = javascript_include_tag "/javascripts/codemirror/mode/xml"
-  = javascript_include_tag "/javascripts/codemirror/mode/markdown"
-  = javascript_include_tag "/javascripts/codemirror/mode/gfm"
-  = javascript_include_tag "/javascripts/codemirror/mode/javascript"
+  = javascript_include_tag "jquery-1.9.1"
+  = javascript_include_tag "codemirror/codemirror-3.1"
+  = javascript_include_tag "codemirror/overlay"
+  = javascript_include_tag "codemirror/mode/xml"
+  = javascript_include_tag "codemirror/mode/markdown"
+  = javascript_include_tag "codemirror/mode/gfm"
+  = javascript_include_tag "codemirror/mode/javascript"
   = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
-  = javascript_include_tag "/javascripts/application"
+  = javascript_include_tag "application"
   = yield_content(:javascripts)
 
   :javascript
-    LiveDraft.DraftId = "#{@draft.try(:token)}";
-    LiveDraft.PusherKey = "#{ENV['PUSHER_KEY']}";
-    LiveDraft.ReadOnly = #{!current_user_owns_draft?};
+    LiveDraft = {
+      DraftId:   "#{@draft.try(:token)}",
+      PusherKey: "#{ENV['PUSHER_KEY']}",
+      ReadOnly:  #{!current_user_owns_draft?}
+    };
 
 %body
   = yield

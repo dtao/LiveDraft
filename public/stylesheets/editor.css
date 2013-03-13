@@ -26,9 +26,11 @@
   left: 0;
   right: 0;
   top: 40px;
-  bottom: 40px;
-  padding: 0 20px;
-  overflow: scroll; }
+  bottom: 40px; }
+  .content .preview iframe {
+    border: none;
+    height: 100%;
+    width: 100%; }
   .content .preview h1, .content .preview h2, .content .preview h3 {
     border-top: 1px solid black; }
   .content .preview.loading {

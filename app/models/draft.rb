@@ -3,6 +3,7 @@ class Draft
 
   belongs_to :user
   has n, :versions, "DraftVersion"
+  has 1, :preview, "DraftPreview", :parent_key => :token, :child_key => :token
   has n, :comments
   has 1, :latest_version, "DraftVersion", :order => [:id.desc]
 

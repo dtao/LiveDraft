@@ -6,8 +6,9 @@
   = javascript_include_tag("editor")
 
 .page.editor
-  %textarea= @version.content if @version
+  %textarea= @version.content unless @version.nil?
 .page.preview
-  = markdown(@version.content) if @version
+  - unless @draft.nil?
+    %iframe(src="/preview/#{@draft.token}")
 .page.drafts
   = drafts

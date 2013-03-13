@@ -56,6 +56,18 @@ class LiveDraft < Padrino::Application
     render(:redirect => @draft.path)
   end
 
+  get "/preview/:token" do |token|
+    @draft = Draft.first(:token => token)
+
+    if request.xhr?
+      @preview = @draft.preview
+      markdown(@preview.content)
+    else
+      @preview = @draft.latest_version
+      render :preview, :layout => false
+    end
+  end
+
   post "/preview" do
     markdown(params["content"])
   end
@@ -95,9 +107,15 @@ class LiveDraft < Padrino::Application
     render(:redirect => draft.path)
   end
 
+  post "/preview/:token" do |token|
+    preview = DraftPreview.first_or_create(:token => token)
+    preview.update(:content => params["content"])
+    Pusher.trigger_async(token, "refresh", {})
+  end
+
   get "/logout" do
     session.delete(:user_id)
-    redirect("/")
+    redirect(request.referrer || "/")
   end
 
   get "/auth/google_oauth2/callback" do
@@ -110,7 +128,7 @@ class LiveDraft < Padrino::Application
 
     session[:user_id] = user.id
 
-    redirect("/")
+    redirect(request["omniauth.origin"] || "/")
   end
 
   get %r{/([^/]*)(?:/.*)?} do |token|

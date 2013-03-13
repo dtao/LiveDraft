@@ -1,5 +1,3 @@
-window.LiveDraft = {};
-
 $(document).ready(function() {
   LiveDraft.Pusher = new Pusher(LiveDraft.PusherKey);
 

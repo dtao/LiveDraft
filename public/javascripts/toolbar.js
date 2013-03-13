@@ -1,7 +1,7 @@
 // TODO: Refactor this file.
 
 $(document).ready(function() {
-  var editor = window.LiveDraft.Editor;
+  var editor = LiveDraft.Editor;
 
   $(".save-draft").click(function() {
     $.ajax({
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   $(".publish-draft").click(function() {
     $.ajax({
-      url: "/publish/" + window.LiveDraft.DraftId,
+      url: "/publish/" + LiveDraft.DraftId,
       type: "POST",
       dataType: "json",
       data: { content: editor.getValue() },
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
   $(".unpublish-draft").click(function() {
     $.ajax({
-      url: "/unpublish/" + window.LiveDraft.DraftId,
+      url: "/unpublish/" + LiveDraft.DraftId,
       type: "POST",
       dataType: "json",
       data: { content: editor.getValue() },

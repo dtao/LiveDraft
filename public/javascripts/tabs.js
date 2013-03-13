@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   $editTab.click(function(){
     $content.attr("class", "content editing");
-    window.LiveDraft.Editor.refresh();
+    LiveDraft.Editor.refresh();
   });
 
   $previewTab.click(function(){
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   $splitTab.click(function() {
     $content.attr("class", "content split");
-    window.LiveDraft.Editor.refresh();
+    LiveDraft.Editor.refresh();
   });
 
   $draftsTab.click(function() {
