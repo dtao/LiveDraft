@@ -35,3 +35,28 @@ $pink:   #f52e67
 
 @mixin codeFont
   font-family: "Source Code Pro", monospace
+
+// Universal styling
+html,
+body
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
+
+h1, h2, h3
+  @include labelFont
+  font-weight: 300
+
+a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+pre
+  @include codeFont
+  background-color: #efefef
+  padding: 10px
+
+.busy
+  opacity: 0.5

@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   var channel = LiveDraft.Pusher.subscribe(LiveDraft.DraftId);
   channel.bind("refresh", function() {
+    $body.addClass("busy");
+
     // Reload the page, basically. But in an AJAX-y way.
     $.ajax({
       url: window.location,
@@ -11,7 +13,9 @@ $(document).ready(function() {
       dataType: "html",
       success: function(html) {
         $body.html(html);
-        $window.trigger("reload");
+      },
+      complete: function() {
+        $body.removeClass("busy");
       }
     });
   });

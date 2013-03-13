@@ -1,3 +1,27 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3 {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+pre {
+  font-family: "Source Code Pro", monospace;
+  background-color: #efefef;
+  padding: 10px; }
+
+.busy {
+  opacity: 0.5; }
+
 .comments form {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

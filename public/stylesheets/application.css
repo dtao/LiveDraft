@@ -19,6 +19,9 @@ pre {
   background-color: #efefef;
   padding: 10px; }
 
+.busy {
+  opacity: 0.5; }
+
 .content {
   position: absolute;
   top: 0;

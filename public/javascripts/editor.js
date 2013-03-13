@@ -28,10 +28,11 @@ $(document).ready(function() {
   }
 
   function updatePreview(editor) {
-    // $preview.addClass("loading");
+    $preview.addClass("busy");
+
     $.ajax($.extend(getUpdatePreviewOptions(editor), {
       complete: function() {
-        // $preview.removeClass("loading");
+        $preview.removeClass("busy");
       }
     }));
   }

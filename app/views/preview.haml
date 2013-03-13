@@ -3,7 +3,9 @@
   %title= ["LiveDraft", @draft.title].compact.join(" - ")
   = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700"
   = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700"
+  = stylesheet_link_tag "application"
   = stylesheet_link_tag "preview"
+  = stylesheet_link_tag "/pygments"
   = javascript_include_tag "jquery-1.9.1.js"
   = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
   = javascript_include_tag "application"
@@ -17,6 +19,3 @@
 
 %body
   = markdown(@preview.content)
-
-/ It seems putting this here is the best workaround for the fact that $(document).ready doesn't
-/ appear to fire in an iframe (or it doesn't fire at the right time... or something).
