@@ -3,9 +3,20 @@
   = stylesheet_link_tag("/pygments")
 
 - content_for(:javascripts) do
+  = javascript_include_tag("codemirror/codemirror-3.1")
+  = javascript_include_tag("codemirror/overlay")
+  = javascript_include_tag("codemirror/mode/xml")
+  = javascript_include_tag("codemirror/mode/markdown")
+  = javascript_include_tag("codemirror/mode/gfm")
+  = javascript_include_tag("codemirror/mode/haml")
+  = javascript_include_tag("codemirror/mode/htmlmixed")
+  = javascript_include_tag("codemirror/mode/javascript")
   = javascript_include_tag("editor")
 
 .page.editor
+  .settings
+    = label_tag("Format")
+    = select_tag(:format, :options => Draft::FORMATS, :selected => @version.format, :class => "format")
   %textarea= @version.content unless @version.nil?
 .page.preview
   - unless @draft.nil?

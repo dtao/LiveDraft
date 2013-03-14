@@ -1,4 +1,11 @@
 $(document).ready(function() {
+  var MODES = {
+    "markdown": "gfm",
+    "haml": "haml",
+    "html": "htmlmixed"
+  };
+
+  var $format  = $("select[name='format']");
   var $editor  = $(".editor textarea");
   var $preview = $(".preview");
 
@@ -42,7 +49,10 @@ $(document).ready(function() {
       url: "/preview",
       type: "POST",
       dataType: "html",
-      data: { content: editor.getValue() }
+      data: {
+        content: editor.getValue(),
+        format: $format.val()
+      }
     };
 
     if (LiveDraft.DraftId) {
@@ -70,4 +80,8 @@ $(document).ready(function() {
   LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {
     updatePreview(editor);
   }));
+
+  $format.change(function() {
+    LiveDraft.Editor.setOption("mode", MODES[this.value]);
+  });
 });

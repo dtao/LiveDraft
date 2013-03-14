@@ -28,15 +28,31 @@ pre {
   right: 0;
   top: 40px;
   bottom: 40px; }
+  .content .editor .settings {
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    top: 0;
+    height: 40px;
+    background-color: #777777;
+    color: white;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 10px;
+    text-align: right; }
+    .content .editor .settings select {
+      position: relative;
+      top: -2px; }
   .content .editor .CodeMirror {
     position: absolute;
     left: 0;
     right: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
     font-family: "Source Code Pro", monospace;
-    height: 100%; }
+    top: 40px;
+    bottom: 0;
+    height: auto;
+    margin: 0; }
   .content .editor .CodeMirror-scoll {
     position: absolute;
     left: 0;

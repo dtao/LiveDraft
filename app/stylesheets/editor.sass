@@ -9,10 +9,29 @@
   .editor
     @include content-panel
 
+    .settings
+      @include stretch-x
+      @include labelFont
+      top: 0
+      height: 40px
+      background-color: $gray
+      color: $white
+      line-height: 40px
+      margin: 0
+      padding: 0 10px
+      text-align: right
+
+      select
+        position: relative
+        top: -2px
+
     .CodeMirror
-      @include stretch-both
+      @include stretch-x
       @include codeFont
-      height: 100%
+      top: 40px
+      bottom: 0
+      height: auto
+      margin: 0
 
     .CodeMirror-scoll
       @include stretch-both

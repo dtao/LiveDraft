@@ -43,7 +43,7 @@ class LiveDraft < Padrino::Application
   post "/" do
     Draft.transaction do
       @draft = Draft.create(:user => current_user)
-      @draft.versions.create(:content => params["content"])
+      @draft.versions.create(:content => params["content"], :format => params["format"])
     end
     render(:redirect => @draft.path)
   end
@@ -60,8 +60,7 @@ class LiveDraft < Padrino::Application
     @draft = Draft.first(:token => token)
 
     if request.xhr?
-      @preview = @draft.preview
-      markdown(@preview.content)
+      @draft.preview.to_html
     else
       @preview = @draft.latest_version
       render :preview, :layout => false
@@ -109,7 +108,7 @@ class LiveDraft < Padrino::Application
 
   post "/preview/:token" do |token|
     preview = DraftPreview.first_or_create(:token => token)
-    preview.update(:content => params["content"])
+    preview.update(:content => params["content"], :format => params["format"])
     Pusher.trigger_async(token, "refresh", {})
   end
 
@@ -140,7 +139,7 @@ class LiveDraft < Padrino::Application
   post %r{/([^/]*)(?:/.*)?} do |token|
     @draft = Draft.first(:token => token)
     halt render(:error => "You're not allowed to edit this draft!") if !current_user_owns_draft?
-    @version = @draft.versions.create(:content => params["content"])
+    @version = @draft.versions.create(:content => params["content"], :format => params["format"])
     render(:redirect => @draft.path)
   end
 end

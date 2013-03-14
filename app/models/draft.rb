@@ -1,6 +1,8 @@
 class Draft
   include DataMapper::Resource
 
+  FORMATS = ["markdown", "haml", "html"].freeze
+
   belongs_to :user
   has n, :versions, "DraftVersion"
   has 1, :preview, "DraftPreview", :parent_key => :token, :child_key => :token
