@@ -27,6 +27,9 @@ $pink:   #f52e67
   @include stretch-x
   @include stretch-y
 
+@mixin contentFont
+  font-family: Cambria, Georgia, serif
+
 @mixin simpleFont
   font-family: Helvetica, Arial, sans-serif
 
@@ -48,6 +51,9 @@ h1, h2, h3
   @include labelFont
   font-weight: 300
 
+p, li, blockquote
+  @include contentFont
+
 a
   text-decoration: none
   &:hover
@@ -57,6 +63,19 @@ pre
   @include codeFont
   background-color: #efefef
   padding: 10px
+
+blockquote
+  background-color: lighten($gray, 40%)
+  border-left: 5px solid darken($green, 20%)
+  margin: auto 0
+  padding: 10px
+
+  &:after
+    content: attr(cite)
+    color: $gray
+    font-size: 75%
+    margin-left: 5px
+    text-align: right
 
 .busy
   opacity: 0.5

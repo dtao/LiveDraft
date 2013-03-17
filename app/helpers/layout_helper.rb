@@ -15,6 +15,10 @@ LiveDraft.helpers do
     partial(:editor)
   end
 
+  def preview_frame
+    "<iframe src='/preview/#{@draft.token}'></iframe>" unless @draft.nil?
+  end
+
   def drafts
     partial(:drafts)
   end

@@ -2,12 +2,15 @@ class Draft
   include DataMapper::Resource
 
   FORMATS = ["markdown", "haml", "html"].freeze
+  STYLESHEET_FORMATS = ["css", "sass"].freeze
 
   belongs_to :user
   has n, :versions, "DraftVersion"
+  has n, :stylesheets, "DraftStylesheet"
   has 1, :preview, "DraftPreview", :parent_key => :token, :child_key => :token
   has n, :comments
   has 1, :latest_version, "DraftVersion", :order => [:id.desc]
+  has 1, :latest_stylesheet, "DraftStylesheet", :order => [:id.desc]
 
   property :id,           Serial
   property :token,        String,  :unique_index => true
@@ -26,6 +29,10 @@ class Draft
 
   def title
     self.latest_version.try(:title)
+  end
+
+  def format
+    self.latest_version.try(:format)
   end
 
   def public?

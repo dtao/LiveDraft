@@ -68,7 +68,14 @@ class LiveDraft < Padrino::Application
   end
 
   post "/preview" do
-    markdown(params["content"])
+    case params["format"]
+    when "markdown"
+      markdown(params["content"], :layout => false)
+    when "haml"
+      haml(params["content"], :layout => false)
+    else
+      params["content"]
+    end
   end
 
   post "/comment/:token" do |token|

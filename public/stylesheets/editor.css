@@ -9,6 +9,9 @@ h1, h2, h3 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 300; }
 
+p, li, blockquote {
+  font-family: Cambria, Georgia, serif; }
+
 a {
   text-decoration: none; }
   a:hover {
@@ -19,16 +22,28 @@ pre {
   background-color: #efefef;
   padding: 10px; }
 
+blockquote {
+  background-color: #dddddd;
+  border-left: 5px solid #55ff55;
+  margin: auto 0;
+  padding: 10px; }
+  blockquote:after {
+    content: attr(cite);
+    color: #777777;
+    font-size: 75%;
+    margin-left: 5px;
+    text-align: right; }
+
 .busy {
   opacity: 0.5; }
 
-.content .editor {
+.content .edit {
   position: absolute;
   left: 0;
   right: 0;
   top: 40px;
   bottom: 40px; }
-  .content .editor .settings {
+  .content .edit .settings {
     position: absolute;
     left: 0;
     right: 0;
@@ -41,10 +56,10 @@ pre {
     margin: 0;
     padding: 0 10px;
     text-align: right; }
-    .content .editor .settings select {
+    .content .edit .settings select {
       position: relative;
       top: -2px; }
-  .content .editor .CodeMirror {
+  .content .edit .CodeMirror {
     position: absolute;
     left: 0;
     right: 0;
@@ -53,7 +68,7 @@ pre {
     bottom: 0;
     height: auto;
     margin: 0; }
-  .content .editor .CodeMirror-scoll {
+  .content .edit .CodeMirror-scoll {
     position: absolute;
     left: 0;
     right: 0;
@@ -61,13 +76,35 @@ pre {
     top: 0;
     bottom: 0;
     overflow: scroll; }
+.content .switchers {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  padding-right: 10px;
+  text-align: right; }
+  .content .switchers a {
+    display: inline-block;
+    background-color: #f52e67;
+    color: white;
+    font-size: 90%;
+    padding: 0 10px; }
+    .content .switchers a.selected {
+      background-color: #00bbbb; }
 .content .preview {
   position: absolute;
   left: 0;
   right: 0;
   top: 40px;
-  bottom: 40px; }
+  bottom: 40px;
+  padding: 0 20px; }
   .content .preview iframe {
+    position: absolute;
+    left: 0;
+    right: 0;
     border: none;
     height: 100%;
     width: 100%; }

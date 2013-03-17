@@ -1,7 +1,7 @@
 $(document).ready(function() {
   LiveDraft.Pusher = new Pusher(LiveDraft.PusherKey);
 
-  $("#notice").on("click", function() {
+  $(document).on("click", "#notice", function() {
     $(this).remove();
   });
 });

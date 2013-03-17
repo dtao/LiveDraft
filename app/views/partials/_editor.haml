@@ -11,15 +11,26 @@
   = javascript_include_tag("codemirror/mode/haml")
   = javascript_include_tag("codemirror/mode/htmlmixed")
   = javascript_include_tag("codemirror/mode/javascript")
+  = javascript_include_tag("codemirror/mode/css")
+  = javascript_include_tag("codemirror/mode/sass")
   = javascript_include_tag("editor")
 
-.page.editor
+.page.edit.show-content
   .settings
     = label_tag("Format")
-    = select_tag(:format, :options => Draft::FORMATS, :selected => @version.format, :class => "format")
-  %textarea= @version.content unless @version.nil?
+    = select_tag(:format, :options => Draft::FORMATS, :selected => @version.try(:format) || "markdown", :class => "format")
+
+  .editor#draft-content(data-mode="#{@version.try(:format) || 'markdown'}")
+    %textarea= @version.content unless @version.nil?
+  .editor#draft-stylesheet(data-mode="sass" style="display: none;")
+    %textarea
+
+  .switchers
+    = empty_link("Content", :class => "switch selected", :"data-reveal" => "draft-content", :"data-hide" => "draft-stylesheet")
+    = empty_link("Stylesheet", :class => "switch", :"data-reveal" => "draft-stylesheet", :"data-hide" => "draft-content")
+
 .page.preview
-  - unless @draft.nil?
-    %iframe(src="/preview/#{@draft.token}")
+  = preview_frame
+
 .page.drafts
   = drafts

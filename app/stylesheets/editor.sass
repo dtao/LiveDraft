@@ -6,7 +6,7 @@
   bottom: 40px
 
 .content
-  .editor
+  .edit
     @include content-panel
 
     .settings
@@ -37,10 +37,31 @@
       @include stretch-both
       overflow: scroll
 
+  .switchers
+    @include labelFont
+    @include stretch-x
+    bottom: 0
+    height: 40px
+    line-height: 40px
+    padding-right: 10px
+    text-align: right
+
+    a
+      display: inline-block
+      background-color: $pink
+      color: $white
+      font-size: 90%
+      padding: 0 10px
+
+      &.selected
+        background-color: darken($blue, 50%)
+
   .preview
     @include content-panel
+    padding: 0 20px
 
     iframe
+      @include stretch-x
       border: none
       height: 100%
       width: 100%

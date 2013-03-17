@@ -13,9 +13,10 @@
 
   :javascript
     LiveDraft = {
-      DraftId:   "#{@draft.try(:token)}",
-      PusherKey: "#{ENV['PUSHER_KEY']}",
-      ReadOnly:  #{!current_user_owns_draft?}
+      DraftId:     "#{@draft.try(:token)}",
+      Editors:     {},
+      PusherKey:   "#{ENV['PUSHER_KEY']}",
+      ReadOnly:    #{!current_user_owns_draft?}
     };
 
 %body

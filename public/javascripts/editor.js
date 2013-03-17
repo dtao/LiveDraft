@@ -1,13 +1,19 @@
 $(document).ready(function() {
-  var MODES = {
-    "markdown": "gfm",
-    "haml": "haml",
-    "html": "htmlmixed"
+  var CONTENT_MODES = {
+    "haml":     "haml",
+    "html":     "htmlmixed",
+    "markdown": "gfm"
   };
 
-  var $format  = $("select[name='format']");
-  var $editor  = $(".editor textarea");
-  var $preview = $(".preview");
+  var STYLESHEET_MODES = {
+    "css":  "css",
+    "sass": "sass"
+  };
+
+  var $format   = $("select[name='format']");
+  var $editors  = $(".editor textarea");
+  var $preview  = $(".preview");
+  var $switches = $(".switch");
 
   function throttle(delay, callback) {
     var timeoutId;
@@ -50,7 +56,8 @@ $(document).ready(function() {
       type: "POST",
       dataType: "html",
       data: {
-        content: editor.getValue(),
+        content: LiveDraft.Editors["draft-content"].getValue(),
+        stylesheet: LiveDraft.Editors["draft-stylesheet"].getValue(),
         format: $format.val()
       }
     };
@@ -70,18 +77,36 @@ $(document).ready(function() {
     return options;
   }
 
-  LiveDraft.Editor = CodeMirror.fromTextArea($editor[0], {
-    mode: "gfm",
-    lineNumbers: true,
-    lineWrapping: true,
-    readOnly: LiveDraft.ReadOnly
+  $editors.each(function() {
+    var $editor  = $(this).parent();
+    var editorId = $editor.attr("id");
+    LiveDraft.Editors[editorId] = CodeMirror.fromTextArea(this, {
+      mode: $editor.attr("data-mode"),
+      lineNumbers: true,
+      lineWrapping: true,
+      readOnly: LiveDraft.ReadOnly
+    });
   });
 
-  LiveDraft.Editor.on("change", throttle(1000, function(editor, change) {
-    updatePreview(editor);
-  }));
+  // TODO: Clean up this legacy hackery.
+  LiveDraft.Editor = LiveDraft.Editors["draft-content"];
+
+  LiveDraft.Editor.on("change", throttle(1000, updatePreview));
 
   $format.change(function() {
-    LiveDraft.Editor.setOption("mode", MODES[this.value]);
+    LiveDraft.Editor.setOption("mode", CONTENT_MODES[this.value]);
+  });
+
+  $switches.click(function() {
+    $switches.removeClass("selected");
+
+    var $link  = $(this).addClass("selected");
+    var toHide = $link.attr("data-hide");
+    var toShow = $link.attr("data-reveal");
+
+    $("#" + toHide).hide();
+    $("#" + toShow).show();
+
+    LiveDraft.Editors[toShow].refresh();
   });
 });
