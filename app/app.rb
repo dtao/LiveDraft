@@ -207,8 +207,6 @@ class LiveDraft < Padrino::Application
   end
 
   post %r{/([^/]*)(?:/.*)?} do |token|
-    puts "\n\n\nParams: #{params.inspect}\n\n\n"
-
     @draft = Draft.first(:token => token)
     halt render(:error => "You're not allowed to edit this draft!") if !current_user_owns_draft?
     @version = create_draft_version(@draft)
