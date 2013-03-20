@@ -1,9 +1,12 @@
 class Draft
   include DataMapper::Resource
 
-  FORMATS        = ["haml", "html", "markdown"].freeze
-  STYLE_FORMATS  = ["css", "sass"].freeze
-  SCRIPT_FORMATS = ["coffeescript", "javascript"].freeze
+  FORMATS               = ["haml", "html", "markdown"].freeze
+  STYLE_FORMATS         = ["css", "sass"].freeze
+  SCRIPT_FORMATS        = ["coffeescript", "javascript"].freeze
+  DEFAULT_FORMAT        = "markdown".freeze
+  DEFAULT_STYLE_FORMAT  = "sass".freeze
+  DEFAULT_SCRIPT_FORMAT = "coffeescript".freeze
 
   belongs_to :user
   has n, :versions, "DraftVersion"

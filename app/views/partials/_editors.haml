@@ -1,0 +1,31 @@
+- content_for(:stylesheets) do
+  = stylesheet_link_tag("editors")
+  = stylesheet_link_tag("/pygments")
+
+- content_for(:javascripts) do
+  = javascript_include_tag("codemirror/codemirror-3.1")
+  = javascript_include_tag("codemirror/overlay")
+  = javascript_include_tag("codemirror/mode/xml")
+  = javascript_include_tag("codemirror/mode/markdown")
+  = javascript_include_tag("codemirror/mode/gfm")
+  = javascript_include_tag("codemirror/mode/haml")
+  = javascript_include_tag("codemirror/mode/htmlmixed")
+  = javascript_include_tag("codemirror/mode/javascript")
+  = javascript_include_tag("codemirror/mode/coffeescript")
+  = javascript_include_tag("codemirror/mode/css")
+  = javascript_include_tag("codemirror/mode/sass")
+  = javascript_include_tag("editors")
+
+.page.editors.show-content
+  = editor(@version, :content)
+  = editor(@version, :style, false)
+  = editor(@version, :script, false)
+
+  .switchers
+    = yield_content(:editor_tabs)
+
+.page.preview
+  = preview_frame
+
+.page.drafts
+  = drafts

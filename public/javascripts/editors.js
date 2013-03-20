@@ -1,16 +1,10 @@
 $(document).ready(function() {
-  var CONTENT_MODES = {
-    "haml":     "haml",
+  var MODES = {
     "html":     "htmlmixed",
     "markdown": "gfm"
   };
 
-  var STYLESHEET_MODES = {
-    "css":  "css",
-    "sass": "sass"
-  };
-
-  var $format   = $("select[name='format']");
+  var $formats  = $("select.format");
   var $editors  = $(".editor textarea");
   var $preview  = $(".preview");
   var $switches = $(".switch");
@@ -56,9 +50,12 @@ $(document).ready(function() {
       type: "POST",
       dataType: "html",
       data: {
-        content: LiveDraft.Editors["draft-content"].getValue(),
-        stylesheet: LiveDraft.Editors["draft-stylesheet"].getValue(),
-        format: $format.val()
+        "content": LiveDraft.Editors["draft-content"].getValue(),
+        "format": $("select[name='format']").val(),
+        "style-content": LiveDraft.Editors["draft-style"].getValue(),
+        "style-format": $("select[name='style_format']").val(),
+        "script-content": LiveDraft.Editors["draft-script"].getValue(),
+        "script-format": $("select[name='script_format']").val()
       }
     };
 
@@ -78,23 +75,26 @@ $(document).ready(function() {
   }
 
   $editors.each(function() {
-    var $editor  = $(this).parent();
-    var editorId = $editor.attr("id");
-    LiveDraft.Editors[editorId] = CodeMirror.fromTextArea(this, {
-      mode: $editor.attr("data-mode"),
+    var $wrapper = $(this).parent();
+    var editorId = $wrapper.attr("id");
+    var editor   = CodeMirror.fromTextArea(this, {
+      mode: $wrapper.attr("data-mode"),
       lineNumbers: true,
       lineWrapping: true,
       readOnly: LiveDraft.ReadOnly
     });
+
+    editor.on("change", throttle(1000, updatePreview));
+
+    LiveDraft.Editors[editorId] = editor;
   });
 
   // TODO: Clean up this legacy hackery.
   LiveDraft.Editor = LiveDraft.Editors["draft-content"];
 
-  LiveDraft.Editor.on("change", throttle(1000, updatePreview));
-
-  $format.change(function() {
-    LiveDraft.Editor.setOption("mode", CONTENT_MODES[this.value]);
+  $formats.change(function() {
+    var editorId = $(this).closest(".editor").attr("id");
+    LiveDraft.Editors[editorId].setOption("mode", MODES[this.value] || this.value);
   });
 
   $switches.click(function() {

@@ -69,13 +69,13 @@ blockquote {
 .content .page {
   display: none; }
 
-.content.editing .edit {
+.content.editing .editors {
   display: block; }
 
 .content.viewing .preview {
   display: block; }
 
-.content.split .edit {
+.content.split .editors {
   display: block;
   border-right: 1px solid black;
   right: 50%; }

@@ -107,13 +107,13 @@ class LiveDraft < Padrino::Application
   get "/preview/css/:token" do |token|
     draft = Draft.first(:token => token.chomp(".css"))
     content_type "text/css"
-    draft.latest_version.to_css
+    draft.preview.to_css
   end
 
-  get "/preview/js/:token" do |token|
+  get "/preview/javascripts/:token" do |token|
     draft = Draft.first(:token => token.chomp(".js"))
     content_type "text/javascript"
-    draft.latest_version.to_js
+    draft.preview.to_js
   end
 
   get "/preview/:token" do |token|
@@ -122,7 +122,7 @@ class LiveDraft < Padrino::Application
     if request.xhr?
       @draft.preview.to_html
     else
-      @preview = @draft.latest_version || @draft.preview
+      @preview = @draft.preview
       render :preview, :layout => false
     end
   end
@@ -156,9 +156,7 @@ class LiveDraft < Padrino::Application
     @draft = Draft.first(:token => token)
     comment = @draft.comments.create(:email => email, :content => params["content"])
 
-    Pusher.trigger_async(@draft.token, "comment", {
-      :html => single_comment(comment)
-    })
+    Pusher.trigger_async(@draft.token, "comment", :html => single_comment(comment))
 
     redirect(@draft.path)
   end
@@ -178,8 +176,13 @@ class LiveDraft < Padrino::Application
   post "/preview/:token" do |token|
     draft = Draft.first(:token => token)
     preview = draft.preview
+
+    full_refresh = params["style-content"].to_s != preview.style_content.to_s ||
+      params["script-content"].to_s != preview.script_content.to_s
+
     update_draft_version(preview)
-    Pusher.trigger_async(token, "refresh", {})
+
+    Pusher.trigger_async(token, "refresh", :full_refresh => full_refresh)
   end
 
   get "/logout" do
@@ -200,13 +203,13 @@ class LiveDraft < Padrino::Application
     redirect(request["omniauth.origin"] || "/")
   end
 
-  get %r{/([^/]*)(?:/.*)?} do |token|
+  get %r{/([^/]*)(?:/[^\.]*)?} do |token|
     @draft   = Draft.first(:token => token)
     @version = @draft.latest_version
     render :index
   end
 
-  post %r{/([^/]*)(?:/.*)?} do |token|
+  post %r{/([^/]*)(?:/[^\.]*)?} do |token|
     @draft = Draft.first(:token => token)
     halt render(:error => "You're not allowed to edit this draft!") if !current_user_owns_draft?
     @version = create_draft_version(@draft)

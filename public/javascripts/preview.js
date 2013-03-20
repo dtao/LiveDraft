@@ -3,10 +3,15 @@ $(document).ready(function() {
   var $body   = $("body");
 
   var channel = LiveDraft.Pusher.subscribe(LiveDraft.DraftId);
-  channel.bind("refresh", function() {
+
+  channel.bind("refresh", function(data) {
+    if (data.full_refresh) {
+      window.location.reload();
+      return;
+    }
+
     $body.addClass("busy");
 
-    // Reload the page, basically. But in an AJAX-y way.
     $.ajax({
       url: window.location,
       type: "GET",
