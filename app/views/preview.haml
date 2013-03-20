@@ -6,10 +6,12 @@
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "preview"
   = stylesheet_link_tag "/pygments"
+  = stylesheet_link_tag "/preview/css/#{@draft.token}" if @draft.has_style?
   = javascript_include_tag "jquery-1.9.1.js"
   = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
   = javascript_include_tag "application"
   = javascript_include_tag "preview"
+  = javascript_include_tag "/preview/js/#{@draft.token}" if @draft.has_script?
 
   :javascript
     LiveDraft = {

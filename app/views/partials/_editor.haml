@@ -11,6 +11,7 @@
   = javascript_include_tag("codemirror/mode/haml")
   = javascript_include_tag("codemirror/mode/htmlmixed")
   = javascript_include_tag("codemirror/mode/javascript")
+  = javascript_include_tag("codemirror/mode/coffeescript")
   = javascript_include_tag("codemirror/mode/css")
   = javascript_include_tag("codemirror/mode/sass")
   = javascript_include_tag("editor")
@@ -21,13 +22,16 @@
     = select_tag(:format, :options => Draft::FORMATS, :selected => @version.try(:format) || "markdown", :class => "format")
 
   .editor#draft-content(data-mode="#{@version.try(:format) || 'markdown'}")
-    %textarea= @version.content unless @version.nil?
+    %textarea= @version.try(:content)
   .editor#draft-stylesheet(data-mode="sass" style="display: none;")
-    %textarea
+    %textarea= @version.try(:style_content)
+  .editor#draft-javascript(data-mode="coffeescript" style="display: none;")
+    %textarea= @version.try(:script_content)
 
   .switchers
-    = empty_link("Content", :class => "switch selected", :"data-reveal" => "draft-content", :"data-hide" => "draft-stylesheet")
-    = empty_link("Stylesheet", :class => "switch", :"data-reveal" => "draft-stylesheet", :"data-hide" => "draft-content")
+    = empty_link("Content", :class => "switch selected", :"data-reveal" => "#draft-content", :"data-hide" => ".editor")
+    = empty_link("Stylesheet", :class => "switch", :"data-reveal" => "#draft-stylesheet", :"data-hide" => ".editor")
+    = empty_link("Script", :class => "switch", :"data-reveal" => "#draft-javascript", :"data-hide" => ".editor")
 
 .page.preview
   = preview_frame

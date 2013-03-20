@@ -103,10 +103,13 @@ $(document).ready(function() {
     var $link  = $(this).addClass("selected");
     var toHide = $link.attr("data-hide");
     var toShow = $link.attr("data-reveal");
+    var editor = LiveDraft.Editors[(toShow || "").replace(/^#/, "")];
 
-    $("#" + toHide).hide();
-    $("#" + toShow).show();
+    $(toHide).hide();
+    $(toShow).show();
 
-    LiveDraft.Editors[toShow].refresh();
+    if (editor) {
+      editor.refresh();
+    }
   });
 });

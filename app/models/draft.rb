@@ -1,16 +1,15 @@
 class Draft
   include DataMapper::Resource
 
-  FORMATS = ["markdown", "haml", "html"].freeze
-  STYLESHEET_FORMATS = ["css", "sass"].freeze
+  FORMATS        = ["haml", "html", "markdown"].freeze
+  STYLE_FORMATS  = ["css", "sass"].freeze
+  SCRIPT_FORMATS = ["coffeescript", "javascript"].freeze
 
   belongs_to :user
   has n, :versions, "DraftVersion"
-  has n, :stylesheets, "DraftStylesheet"
-  has 1, :preview, "DraftPreview", :parent_key => :token, :child_key => :token
   has n, :comments
-  has 1, :latest_version, "DraftVersion", :order => [:id.desc]
-  has 1, :latest_stylesheet, "DraftStylesheet", :order => [:id.desc]
+  has 1, :latest_version, "DraftVersion", :final => true, :order => [:id.desc]
+  has 1, :preview, "DraftVersion", :final => false, :order => [:id.desc]
 
   property :id,           Serial
   property :token,        String,  :unique_index => true
@@ -21,6 +20,10 @@ class Draft
 
   before :create do
     self.token ||= Randy.string(8)
+  end
+
+  after :create do
+    self.versions.create
   end
 
   def path
@@ -37,6 +40,14 @@ class Draft
 
   def public?
     !!self.published_at
+  end
+
+  def has_style?
+    !!self.latest_version.try(:style_content)
+  end
+
+  def has_script?
+    !!self.latest_version.try(:script_content)
   end
 
   def self.latest(limit=20)

@@ -1,7 +1,6 @@
 // TODO: Refactor this file.
 
 $(document).ready(function() {
-  var editor  = LiveDraft.Editor;
   var $format = $("select[name='format']");
 
   $(".save-draft").click(function() {
@@ -10,8 +9,10 @@ $(document).ready(function() {
       type: "POST",
       dataType: "json",
       data: {
-        content: editor.getValue(),
-        format: $format.val()
+        "content": LiveDraft.Editors["draft-content"].getValue(),
+        "format": $format.val(),
+        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
+        "style-format": "sass"
       },
       success: function(data) {
         window.location = data.redirect;
@@ -28,8 +29,10 @@ $(document).ready(function() {
       type: "POST",
       dataType: "json",
       data: {
-        content: editor.getValue(),
-        format: $format.val()
+        "content": LiveDraft.Editors["draft-content"].getValue(),
+        "format": $format.val(),
+        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
+        "style-format": "sass"
       },
       success: function(data) {
         window.location = data.redirect;
@@ -46,8 +49,10 @@ $(document).ready(function() {
       type: "POST",
       dataType: "json",
       data: {
-        content: editor.getValue(),
-        format: $format.val()
+        "content": LiveDraft.Editors["draft-content"].getValue(),
+        "format": $format.val(),
+        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
+        "style-format": "sass"
       },
       success: function(data) {
         window.location = data.redirect;
@@ -59,6 +64,6 @@ $(document).ready(function() {
   });
 
   $(".clear-draft").click(function() {
-    editor.setValue("");
+    LiveDraft.Editor.setValue("");
   });
 });
