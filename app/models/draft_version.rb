@@ -21,13 +21,15 @@ class DraftVersion
   validates_within :style_format,  :set => Draft::STYLE_FORMATS
   validates_within :script_format, :set => Draft::SCRIPT_FORMATS
 
-  before :create do
+  before :save do
     html = Nokogiri::HTML.parse(self.to_html)
 
     # If the first element in the document is a heading of some kind, snag that as the title.
     first_element = html.css("body").children.first
     if first_element.try(:name) =~ /^h\d+$/i
       self.title = first_element.text
+    else
+      self.title = nil
     end
   end
 

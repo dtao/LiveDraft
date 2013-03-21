@@ -1,18 +1,16 @@
-// TODO: Refactor this file.
-
 $(document).ready(function() {
-  var $format = $("select[name='format']");
-
-  $(".save-draft").click(function() {
+  function sendData(url) {
     $.ajax({
-      url: window.location,
+      url: url,
       type: "POST",
       dataType: "json",
       data: {
         "content": LiveDraft.Editors["draft-content"].getValue(),
-        "format": $format.val(),
-        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
-        "style-format": "sass"
+        "format": $("select[name='format']").val(),
+        "style-content": LiveDraft.Editors["draft-style"].getValue(),
+        "style-format": $("select[name='style_format']").val(),
+        "script-content": LiveDraft.Editors["draft-script"].getValue(),
+        "script-format": $("select[name='script_format']").val()
       },
       success: function(data) {
         window.location = data.redirect;
@@ -21,46 +19,18 @@ $(document).ready(function() {
         alert("Oh no, an error!");
       }
     });
+  }
+
+  $(".save-draft").click(function() {
+    sendData(window.location);
   });
 
   $(".publish-draft").click(function() {
-    $.ajax({
-      url: "/publish/" + LiveDraft.DraftId,
-      type: "POST",
-      dataType: "json",
-      data: {
-        "content": LiveDraft.Editors["draft-content"].getValue(),
-        "format": $format.val(),
-        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
-        "style-format": "sass"
-      },
-      success: function(data) {
-        window.location = data.redirect;
-      },
-      error: function() {
-        alert("Oh no, an error!");
-      }
-    });
+    sendData("/publish/" + LiveDraft.DraftId);
   });
 
   $(".unpublish-draft").click(function() {
-    $.ajax({
-      url: "/unpublish/" + LiveDraft.DraftId,
-      type: "POST",
-      dataType: "json",
-      data: {
-        "content": LiveDraft.Editors["draft-content"].getValue(),
-        "format": $format.val(),
-        "style-content": LiveDraft.Editors["draft-stylesheet"].getValue(),
-        "style-format": "sass"
-      },
-      success: function(data) {
-        window.location = data.redirect;
-      },
-      error: function() {
-        alert("Oh no, an error!");
-      }
-    });
+    sendData("/unpublish/" + LiveDraft.DraftId);
   });
 
   $(".clear-draft").click(function() {
