@@ -85,7 +85,8 @@ blockquote {
   height: 40px;
   line-height: 40px;
   padding-right: 10px;
-  text-align: right; }
+  text-align: right;
+  z-index: 10; }
   .content .switchers a {
     display: inline-block;
     background-color: #f52e67;
