@@ -13,7 +13,7 @@ $(document).ready(function() {
     $body.addClass("busy");
 
     $.ajax({
-      url: window.location,
+      url: "/preview/" + LiveDraft.DraftId,
       type: "GET",
       dataType: "html",
       success: function(html) {

@@ -101,7 +101,8 @@ blockquote {
   right: 0;
   top: 40px;
   bottom: 40px;
-  padding: 0 20px; }
+  padding: 0 20px;
+  overflow: scroll; }
   .content .preview iframe {
     position: absolute;
     left: 0;
@@ -109,8 +110,6 @@ blockquote {
     border: none;
     height: 100%;
     width: 100%; }
-  .content .preview h1, .content .preview h2, .content .preview h3 {
-    border-top: 1px solid black; }
 .content .drafts {
   position: absolute;
   left: 0;

@@ -34,7 +34,7 @@ LiveDraft.helpers do
   end
 
   def preview_frame
-    "<iframe src='/preview/#{@draft.token}'></iframe>" unless @draft.nil?
+    "<iframe src='/latest/#{@draft.token}'></iframe>" unless @draft.nil?
   end
 
   def drafts
