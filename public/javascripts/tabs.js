@@ -1,9 +1,11 @@
 $(document).ready(function() {
-  var $content    = $(".content");
-  var $editTab    = $(".edit-tab");
-  var $previewTab = $(".preview-tab");
-  var $splitTab   = $(".side-by-side-tab");
-  var $draftsTab  = $(".drafts-tab");
+  var $body        = $("body");
+  var $content     = $(".content");
+  var $editTab     = $(".edit-tab");
+  var $previewTab  = $(".preview-tab");
+  var $splitTab    = $(".side-by-side-tab");
+  var $draftsTab   = $(".drafts-tab");
+  var $commentsTab = $(".hide-comments");
 
   $editTab.click(function(){
     $content.attr("class", "content editing");
@@ -21,5 +23,9 @@ $(document).ready(function() {
 
   $draftsTab.click(function() {
     $content.attr("class", "content list");
+  });
+
+  $commentsTab.click(function() {
+    $body.toggleClass("comments-hidden");
   });
 });

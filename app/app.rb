@@ -85,10 +85,13 @@ class LiveDraft < Padrino::Application
   end
 
   get "/" do
-    @draft = Draft.create(:user => current_user)
+    @draft = Draft.first(:token => session[:draft_token]) ||
+      Draft.create(:user => current_user)
+
     if !logged_in?
       session[:draft_token] = @draft.token
     end
+
     render :index
   end
 

@@ -41,8 +41,12 @@ blockquote {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
   right: 300px;
+  transition: right 0.5s;
+  -moz-transition: right 0.5s;
+  -o-transition: right 0.5s;
+  -webkit-transition: right 0.5s;
+  left: 0;
   border-right: 1px solid black;
   font-size: 125%; }
 
@@ -50,8 +54,32 @@ blockquote {
   position: absolute;
   top: 0;
   bottom: 0;
+  width: 300px;
+  transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  -webkit-transition: width 0.5s;
   right: 0;
-  width: 300px; }
+  overflow: scroll; }
+
+.hide-comments:before {
+  content: "Hide "; }
+
+body.comments-hidden .content {
+  right: 0;
+  transition: right 0.5s;
+  -moz-transition: right 0.5s;
+  -o-transition: right 0.5s;
+  -webkit-transition: right 0.5s; }
+body.comments-hidden .comments {
+  width: 0;
+  transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  -webkit-transition: width 0.5s;
+  overflow: hidden; }
+body.comments-hidden .hide-comments:before {
+  content: "Show "; }
 
 #notice {
   font-family: Helvetica, Arial, sans-serif;

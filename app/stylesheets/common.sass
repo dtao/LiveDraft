@@ -7,6 +7,9 @@ $green:  #bfb
 $yellow: #ffe
 $pink:   #f52e67
 
+// Other stuff
+$transition-time: 0.5s
+
 // Layout stuff
 @mixin border-box
   -webkit-box-sizing: border-box
@@ -38,6 +41,14 @@ $pink:   #f52e67
 
 @mixin codeFont
   font-family: "Source Code Pro", monospace
+
+// Transition stuff
+@mixin transition($property, $value)
+  #{$property}: $value
+  transition: $property $transition-time
+  -moz-transition: $property $transition-time
+  -o-transition: $property $transition-time
+  -webkit-transition: $property $transition-time
 
 // Universal styling
 html,

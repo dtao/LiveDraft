@@ -2,15 +2,28 @@
 
 .content
   @include stretch-y
+  @include transition(right, 300px)
   left: 0
-  right: 300px
   border-right: 1px solid black
   font-size: 125%
 
 .comments
   @include stretch-y
+  @include transition(width, 300px)
   right: 0
-  width: 300px
+  overflow: scroll
+
+.hide-comments:before
+  content: "Hide "
+
+body.comments-hidden
+  .content
+    @include transition(right, 0)
+  .comments
+    @include transition(width, 0)
+    overflow: hidden
+  .hide-comments:before
+    content: "Show "
 
 #notice
   @include simpleFont
