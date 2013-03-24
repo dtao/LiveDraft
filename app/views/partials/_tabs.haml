@@ -5,7 +5,7 @@
   = javascript_include_tag("tabs")
 
 .tabs
-  = link_to("New", "/", :class => "new-link")
+  = link_to("New", "/new", :class => "new-link")
 
   - if current_user_owns_draft?
     = empty_link("Edit", :class => "edit-tab")

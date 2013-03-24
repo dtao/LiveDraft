@@ -85,14 +85,20 @@ class LiveDraft < Padrino::Application
   end
 
   get "/" do
-    @draft = (session[:draft_token] && Draft.first(:token => session[:draft_token])) ||
-      Draft.create(:user => current_user)
+    @draft = (session[:draft_token] && Draft.first(:token => session[:draft_token]))
+    @draft ||= Draft.create(:user => current_user)
+    @version = @draft.latest_version || @draft.preview
 
     if !logged_in? && session[:draft_token].nil?
       session[:draft_token] = @draft.token
     end
 
     render :index
+  end
+
+  get "/new" do
+    session.delete(:draft_token)
+    redirect("/")
   end
 
   post "/" do
@@ -214,7 +220,14 @@ class LiveDraft < Padrino::Application
 
     session[:user_id] = user.id
 
-    redirect(request["omniauth.origin"] || "/")
+    # If the user makes some edits to a draft before logging in, then logs in, we want to associate
+    # that draft w/ his or her account.
+    if session[:draft_token]
+      draft = Draft.first(:token => session[:draft_token])
+      draft.update(:user => current_user) unless draft.nil? || draft.user_id.present?
+    end
+
+    redirect(request.env["omniauth.origin"] || "/")
   end
 
   get %r{/([^/]*)(?:/[^\.]*)?} do |token|
