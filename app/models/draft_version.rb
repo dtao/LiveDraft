@@ -53,6 +53,14 @@ class DraftVersion
     # end
   end
 
+  def has_style?
+    !!self.style_content
+  end
+
+  def has_script?
+    !!self.script_content
+  end
+
   def to_css
     case self.style_format
     when "sass"

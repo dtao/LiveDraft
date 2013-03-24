@@ -32,7 +32,7 @@ class LiveDraft < Padrino::Application
     end
 
     def current_user_owns_draft?
-      @draft.nil? || (logged_in? && @draft.user == current_user)
+      (logged_in? && @draft.user == current_user) || @draft.token == session[:draft_token]
     end
   end
 
@@ -85,6 +85,10 @@ class LiveDraft < Padrino::Application
   end
 
   get "/" do
+    @draft = Draft.create(:user => current_user)
+    if !logged_in?
+      session[:draft_token] = @draft.token
+    end
     render :index
   end
 
@@ -117,7 +121,7 @@ class LiveDraft < Padrino::Application
     draft.preview.to_css
   end
 
-  get "/preview/javascripts/:token" do |token|
+  get "/preview/js/:token" do |token|
     draft = Draft.first(:token => token.chomp(".js"))
     content_type "text/javascript"
     draft.preview.to_js

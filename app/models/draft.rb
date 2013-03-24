@@ -45,14 +45,6 @@ class Draft
     !!self.published_at
   end
 
-  def has_style?
-    !!self.latest_version.try(:style_content)
-  end
-
-  def has_script?
-    !!self.latest_version.try(:script_content)
-  end
-
   def self.latest(limit=20)
     all(:limit => limit, :order => [:id.desc])
   end

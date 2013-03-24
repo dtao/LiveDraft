@@ -22,7 +22,7 @@ $(document).ready(function() {
   }
 
   $(".save-draft").click(function() {
-    sendData(window.location);
+    sendData("/" + LiveDraft.DraftId);
   });
 
   $(".publish-draft").click(function() {
