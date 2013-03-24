@@ -85,10 +85,10 @@ class LiveDraft < Padrino::Application
   end
 
   get "/" do
-    @draft = Draft.first(:token => session[:draft_token]) ||
+    @draft = (session[:draft_token] && Draft.first(:token => session[:draft_token])) ||
       Draft.create(:user => current_user)
 
-    if !logged_in?
+    if !logged_in? && session[:draft_token].nil?
       session[:draft_token] = @draft.token
     end
 
