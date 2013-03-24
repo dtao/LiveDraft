@@ -85,3 +85,5 @@ blockquote {
 
 .content.list .drafts {
   display: block; }
+.content.list .toolbar .actions a {
+  display: none; }
