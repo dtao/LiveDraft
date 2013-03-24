@@ -36,4 +36,10 @@ $(document).ready(function() {
   $(".clear-draft").click(function() {
     LiveDraft.Editor.setValue("");
   });
+
+  $(".delete-draft").click(function() {
+    if (confirm("Are you sure you want to delete this draft?")) {
+      sendData("/delete/" + LiveDraft.DraftId);
+    }
+  });
 });

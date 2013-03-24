@@ -60,3 +60,5 @@ blockquote {
     float: right; }
     .content .toolbar .actions a {
       color: #bbffbb; }
+      .content .toolbar .actions a.delete-draft {
+        color: #ffd555; }
