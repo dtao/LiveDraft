@@ -33,6 +33,10 @@ class DraftVersion
     end
   end
 
+  def self.final
+    all(:final => true)
+  end
+
   # TODO: Either work out a smart way to declare "this method must be called in a transaction" or
   # hack DM to allow nested transactions (maybe just by requiring the "dm-nested-transactions"
   # gem?).
