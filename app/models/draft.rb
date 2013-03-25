@@ -29,6 +29,14 @@ class Draft
     self.versions.create
   end
 
+  def self.latest(limit=20)
+    all(:limit => limit, :order => [:id.desc])
+  end
+
+  def self.published
+    all(:published_at.not => nil)
+  end
+
   def path
     self.title ? "/#{self.token}/#{self.title.parameterize}" : "/#{self.token}"
   end
@@ -45,11 +53,11 @@ class Draft
     !!self.published_at
   end
 
-  def self.latest(limit=20)
-    all(:limit => limit, :order => [:id.desc])
+  def started?
+    !!self.latest_version
   end
 
-  def self.published
-    all(:published_at.not => nil)
+  def to_s
+    self.title || self.token
   end
 end

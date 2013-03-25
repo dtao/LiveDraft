@@ -230,6 +230,14 @@ class LiveDraft < Padrino::Application
     redirect(request.env["omniauth.origin"] || "/")
   end
 
+  post "/delete/:token" do |token|
+    @draft = Draft.first(:token => token)
+    halt render(:error => "You can't delete another user's draft!") if !current_user_owns_draft?
+    @draft.destroy!
+    flash[:notice] = "Deleted draft '#{@draft.to_s}'"
+    render(:redirect => "/")
+  end
+
   get %r{/([^/]*)(?:/[^\.]*)?} do |token|
     @draft   = Draft.first(:token => token)
     @version = @draft.latest_version
