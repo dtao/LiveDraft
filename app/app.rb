@@ -117,11 +117,22 @@ class LiveDraft < Padrino::Application
     render(:redirect => @draft.path)
   end
 
+  get "/latest/css/:token" do |token|
+    draft = Draft.first(:token => token.chomp(".css"))
+    content_type "text/css"
+    draft.latest_version.to_css
+  end
+
+  get "/latest/js/:token" do |token|
+    draft = Draft.first(:token => token)
+    content_type "text/javascript"
+    draft.latest_version.to_js
+  end
+
   get "/latest/:token" do |token|
     @draft = Draft.first(:token => token)
-
     @preview = @draft.latest_version || @draft.preview
-    render :preview, :layout => false
+    render :latest, :layout => false
   end
 
   get "/preview/css/:token" do |token|
