@@ -15,8 +15,6 @@ gem "haml"
 gem "json"
 gem "glorify"
 gem "nokogiri"
-gem "pg"
-gem "dm-postgres-adapter"
 gem "dm-validations"
 gem "dm-timestamps"
 gem "dm-migrations"
@@ -38,4 +36,9 @@ gem "padrino", "0.10.7"
 group :development do
   gem "dm-sqlite-adapter"
   gem "pry"
+end
+
+group :production do
+  gem "dm-postgres-adapter"
+  gem "pg"
 end
