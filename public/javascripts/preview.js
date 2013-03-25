@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   channel.bind("refresh", function(data) {
     if (data.full_refresh) {
-      window.location.reload();
+      window.location = data.redirect;
       return;
     }
 

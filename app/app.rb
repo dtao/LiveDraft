@@ -202,7 +202,10 @@ class LiveDraft < Padrino::Application
 
     update_draft_version(preview)
 
-    Pusher.trigger_async(token, "refresh", :full_refresh => full_refresh)
+    Pusher.trigger_async(token, "refresh", {
+      :full_refresh => full_refresh,
+      :redirect     => "/preview/#{token}"
+    })
   end
 
   get "/logout" do
