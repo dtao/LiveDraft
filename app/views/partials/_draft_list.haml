@@ -1,10 +1,10 @@
-# TODO: Don't filter out zero-version drafts here; figure out a more efficient way to do it.
+/ TODO: Don't filter out zero-version drafts here; figure out a more efficient way to do it.
 
 .draft-list
   - drafts.reject { |d| d.latest_version.nil? }.each do |draft|
     %a.draft(href="/#{draft.token}/#{draft.title.try(:parameterize)}")
       .created= draft.title || draft.created_at.strftime("%A, %B %d, %Y")
       .owner= draft.user.try(:name)
-      .updated= (draft.latest_version.try(:created_at) || draft.updated_at).strftime("%l:%M %p on %A")
+      .updated= (draft.latest_version.try(:updated_at) || draft.updated_at).strftime("%l:%M %p on %A")
       .published= draft.published_at.try(:strftime, "%l:%M %p on %A")
       .edits= draft.versions.final.count
