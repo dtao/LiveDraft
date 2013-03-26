@@ -1,6 +1,5 @@
 class DraftVersion
   include DataMapper::Resource
-  include ToHtml
 
   belongs_to :draft
 
@@ -63,6 +62,30 @@ class DraftVersion
 
   def has_script?
     !!self.script_content
+  end
+
+  def to_html
+    html = ""
+
+    begin
+      case self.format
+      when "markdown"
+        html = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(self.content || "")
+      when "haml"
+        html = Haml::Engine.new(self.content).render
+      when "html"
+        html = self.content
+      end
+
+      # Validate CSS and JS, just to catch any errors so that we can display them.
+      self.to_css
+      self.to_js
+
+    rescue => ex
+      html << "<div id='livedraft-error'>#{ex.message}</div>"
+    end
+
+    html
   end
 
   def to_css

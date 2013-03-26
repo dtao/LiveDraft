@@ -1,42 +1,11 @@
-html,
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0; }
-
-h1, h2, h3 {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-weight: 300; }
-
-p, li, blockquote {
-  font-family: Cambria, Georgia, serif; }
-
-a {
-  text-decoration: none; }
-  a:hover {
-    text-decoration: underline; }
-
-pre {
-  font-family: "Source Code Pro", monospace;
-  background-color: #efefef;
-  padding: 10px; }
-
-blockquote {
-  background-color: #dddddd;
-  border-left: 5px solid #55ff55;
-  margin: auto 0;
-  padding: 10px; }
-  blockquote:after {
-    content: attr(cite);
-    color: #777777;
-    font-size: 75%;
-    margin-left: 5px;
-    text-align: right; }
-
-.busy {
-  opacity: 0.5; }
-
-body {
-  box-sizing: border-box;
-  padding: 0 20px; }
+#livedraft-error {
+  position: fixed;
+  top: 25%;
+  bottom: 25%;
+  left: 15%;
+  right: 15%;
+  overflow: hidden;
+  background-color: black;
+  color: #ffeeee;
+  opacity: 0.75;
+  padding: 25px; }
