@@ -124,7 +124,7 @@ class LiveDraft < Padrino::Application
   end
 
   get "/latest/js/:token" do |token|
-    draft = Draft.first(:token => token)
+    draft = Draft.first(:token => token.chomp(".js"))
     content_type "text/javascript"
     draft.latest_version.to_js
   end
