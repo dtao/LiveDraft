@@ -10,6 +10,7 @@ gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
 gem "randy"
+gem "coffee-script"
 gem "sass"
 gem "haml"
 gem "json"

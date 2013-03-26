@@ -98,7 +98,11 @@ class DraftVersion
   end
 
   def to_js
-    # TODO: Add support for CoffeeScript.
-    self.script_content
+    case self.script_format
+    when "coffeescript"
+      CoffeeScript.compile(self.script_content)
+    else
+      self.script_content
+    end
   end
 end
