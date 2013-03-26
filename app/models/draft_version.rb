@@ -91,7 +91,7 @@ class DraftVersion
   def to_css
     case self.style_format
     when "sass"
-      Sass::Engine.new(self.style_content, :syntax => :sass).render
+      Sass::Engine.new(self.style_content || "", :syntax => :sass).render
     else
       self.style_content
     end
@@ -100,7 +100,7 @@ class DraftVersion
   def to_js
     case self.script_format
     when "coffeescript"
-      CoffeeScript.compile(self.script_content)
+      CoffeeScript.compile(self.script_content || "")
     else
       self.script_content
     end
