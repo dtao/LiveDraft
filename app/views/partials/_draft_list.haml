@@ -1,7 +1,5 @@
-/ TODO: Don't filter out zero-version drafts here; figure out a more efficient way to do it.
-
 .draft-list
-  - drafts.reject { |d| d.latest_version.nil? }.each do |draft|
+  - drafts.each do |draft|
     %a.draft(href="/#{draft.token}/#{draft.title.try(:parameterize)}")
       .created= draft.title || draft.created_at.strftime("%A, %B %d, %Y")
       .owner= draft.user.try(:name)
