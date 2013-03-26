@@ -77,8 +77,9 @@ $(document).ready(function() {
   $editors.each(function() {
     var $wrapper = $(this).parent();
     var editorId = $wrapper.attr("id");
+    var mode     = $wrapper.attr("data-mode");
     var editor   = CodeMirror.fromTextArea(this, {
-      mode: MODES[$wrapper.attr("data-mode")],
+      mode: MODES[mode] || mode,
       lineNumbers: true,
       lineWrapping: true,
       readOnly: LiveDraft.ReadOnly
