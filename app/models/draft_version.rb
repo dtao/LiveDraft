@@ -62,15 +62,21 @@ class DraftVersion
     !!self.script_content
   end
 
-  def to_html
+  def to_html(renderer=nil)
     html = ""
 
     begin
       case self.format
       when "markdown"
-        html = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(self.content || "")
+        html = renderer ?
+          renderer.markdown(self.content || "", :layout => false) :
+          Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(self.content || "")
+
       when "haml"
-        html = Haml::Engine.new(self.content).render
+        html = renderer ?
+          renderer.haml(self.content || "", :layout => false) :
+          Haml::Engine.new(self.content || "").render
+
       when "html"
         html = self.content
       end

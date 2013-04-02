@@ -151,7 +151,7 @@ class LiveDraft < Padrino::Application
     @draft = Draft.first(:token => token)
 
     if request.xhr?
-      @draft.preview.to_html
+      @draft.preview.to_html(self)
     else
       @preview = @draft.preview
       render :preview, :layout => false
