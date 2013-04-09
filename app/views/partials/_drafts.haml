@@ -1,7 +1,7 @@
 - if logged_in?
   %h1 My Drafts
 
-  = draft_list(current_user.drafts)
+  = draft_list(current_user.drafts(:order => [:updated_at.desc]))
 
 %h1 Public Drafts
 
