@@ -19,7 +19,7 @@
       ReadOnly:    #{!current_user_owns_draft?}
     };
 
-%body
+%body(class="#{if @draft.try(:comments).blank? then 'comments-hidden' else '' end}")
   = yield
 
   - if flash[:notice]
