@@ -65,6 +65,8 @@ blockquote {
     float: right; }
     .content .tabs .actions a {
       color: #bbffbb; }
+.content .page {
+  overflow: auto; }
 
 .content .page {
   display: none; }
