@@ -81,6 +81,13 @@ body.comments-hidden .comments {
 body.comments-hidden .hide-comments:before {
   content: "Show "; }
 
+body.loading {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  background: black url("/images/loading.gif") no-repeat center; }
+  body.loading * {
+    display: none; }
+
 #notice {
   font-family: Helvetica, Arial, sans-serif;
   position: fixed;

@@ -25,6 +25,13 @@ body.comments-hidden
   .hide-comments:before
     content: "Show "
 
+body.loading
+  @include translucent
+  background: $black url("/images/loading.gif") no-repeat center
+
+  *
+    display: none
+
 #notice
   @include simpleFont
   position: fixed

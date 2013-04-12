@@ -43,6 +43,10 @@ $transition-time: 0.5s
 @mixin codeFont
   font-family: "Source Code Pro", monospace
 
+@mixin translucent
+  opacity: 0.5
+  filter: alpha(opacity=50)
+
 // Transition stuff
 @mixin transition($property, $value)
   #{$property}: $value
