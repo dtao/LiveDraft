@@ -15,4 +15,4 @@
         = empty_link("Unpublish", :class => "unpublish-draft")
       - else
         = empty_link("Publish", :class => "publish-draft")
-      = empty_link("Delete", :class => "delete-draft") unless @draft.nil? || !@draft.started?
+      = empty_link("Delete", :class => "delete-draft") unless @draft.nil?
