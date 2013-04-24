@@ -209,7 +209,7 @@ class LiveDraft < Padrino::Application
     preview = draft.preview
 
     full_refresh = params["style-content"].to_s != preview.style_content.to_s ||
-      params["script-content"].to_s != preview.script_content.to_s
+      preview.has_script?
 
     update_draft_version(preview)
 
